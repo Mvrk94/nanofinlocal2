@@ -1,0 +1,31 @@
+{
+  "name": "appfy",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Appfy is a JavaScript toolkit that saves your time to build web apps using angular.js and node.",
+  "homepage": "https://appfy.org",
+  "scripts": {
+    "serve": "cd client && gulp serve",
+    "serve:dist": "cd client && gulp serve:dist",
+    "install": "cd client && npm install && bower install",
+    "build": "cd client && rm -rfv .tmp && gulp build-client --core"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Appfy/appfy.git"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "tags": [
+    "mean",
+    "angular",
+    "express",
+    "sendgrid",
+    "firebase",
+    "heroku",
+    "github",
+    "mongodb",
+    "sparkpost"
+  ]
+}

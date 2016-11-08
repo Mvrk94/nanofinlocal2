@@ -1,0 +1,151 @@
+﻿<div ng-controller="adminHomePageController">
+    <div ng-include="'views/shared/navbar/adminNav.html'"></div>
+
+    <div class="profile-page">
+
+        <div class="header header-filter" style="background: url('../../assets/img/desk.jpg') no-repeat center center; background-size: 100%;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="brand">
+                            <h1 style="font-family: 'Rock Salt', cursive; color:white; text-align:center; margin-top:10%;">
+                                Administrator
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper" ng-controller="AdminCtrl">
+            <div class="main main-raised">
+                <div class="profile-content">
+                    <div class="container">
+
+                        <div id="adminTabbedContentContainer">
+                            <ul class="nav nav-pills nav-pills-info nav-justified" role="tablist">
+                                <li class="active">
+                                    <a href="" data-toggle="tab" data-target="#PayIM">
+                                        <i class="material-icons">account_balance</i>
+                                        Pay product providers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" data-toggle="tab" data-target="#processApplications">
+                                        <i class="material-icons">playlist_add_check</i>
+                                        Process Consumer Applications
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="PayIM">
+                                   
+                                <div class="tim-row" style="margin-bottom:10em">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">#</th>
+                                                <th>Company</th>
+                                                <th>Cell Phone</th>
+                                                <th>Email</th>
+                                                <th>Total Cash Owed</th>
+                                                <th>Layst Payment Made</th>
+                                                <th>Pay</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <!--ng-repeat="productProvier in productProvierInformation"-->
+                                                <td class="text-center"> {{$index + 1}}</td>
+                                                <td>{{productProvierInformation.companyName}}</td>
+                                                <td>{{productProvierInformation.cellPhoneNumber}}</td>
+                                                <td>{{productProvierInformation.email}}</td>
+                                                <!--<td> { {productProvierInformation.totalCashedOwed|currency:"R":2}}</td>-->
+                                                <td>R6223.50</td>
+                                                <td> {{productProvierInformation.lastPaymentMade.substring(0, 10)}}</td>
+                                                <td><button style="margin:0px" class="btn btn-raised btn-info">pay</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                
+
+
+
+
+                                </div> <!--PAY IM CONTENT-->
+
+
+
+                                <div class="tab-pane fade" id="processApplications">
+                                    <div class="processApplicationsContent">
+                                        <div class="tim-row" id="consumerApplications">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">#</th>
+                                                        <th>First Name</th>
+                                                        <th>Surname</th>
+                                                        <th>Cell Phone</th>
+                                                        <th>ID Number</th>
+                                                        <th>Download ID</th>
+                                                        <th>Accept/Reject Consumer Application</th> <!--approve decline viewID(IDDocPath)-->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="unvalidatedConsumer in unvalidatedConsumers">
+                                                        <td class="text-center"> {{$index + 1}}</td>
+                                                        <td>{{unvalidatedConsumer.userFirstName}}</td>
+                                                        <td>{{unvalidatedConsumer.userLastName}}</td>
+                                                        <td>{{unvalidatedConsumer.userContactNumber}}</td>
+                                                        <td>{{unvalidatedConsumer.IDnumber}}</td>
+                                                        <td>
+                                                            <div style="display:inline">
+                                                                <a download="ID.png" href="https://nanofinapifinal.azurewebsites.net/UploadFiles/userDocs/consumer/ID/{{unvalidatedConsumer.userEmail}}/id.png"><i class="material-icons" style="margin-left:20px">file_download</i></a>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div style="display:inline; margin-left:20px; margin-bottom:20px">
+                                                                <md-button class="md-icon-button" ng-click="acceptConsumer(unvalidatedConsumer.User_ID)">
+                                                                    <md-tooltip md-direction="top">
+                                                                        Accept Application
+                                                                    </md-tooltip>
+                                                                    <md-icon><i class="material-icons">add_circle_outline</i></md-icon>
+                                                                </md-button>
+                                                            </div>
+
+                                                            <div style="display:inline; margin-left:20px">
+                                                                <md-button class="md-icon-button" ng-click="rejectConsumer(unvalidatedConsumer.User_ID)">
+                                                                    <md-tooltip md-direction="top">
+                                                                        Reject Application
+                                                                    </md-tooltip>
+                                                                    <md-icon><i class="material-icons">remove_circle_outline</i></md-icon>
+                                                                </md-button>
+                                                            </div>
+                                                        </td>
+
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div> <!--END process applications table-->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> <!--adminTabbedContentContainer-->
+
+                       
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

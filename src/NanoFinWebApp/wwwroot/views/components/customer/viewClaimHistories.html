@@ -1,0 +1,136 @@
+﻿<div ng-controller="claimHistoryPageController">
+
+    <div ng-include="'views/shared/navbar/consumerNav.html'"></div>
+
+    <div class="wrapper">
+
+        <div class="header header-filter" style="background: url('../../assets/img/coverUmbrellas.jpg') no-repeat ; background-size:cover">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="brand">
+                            <h1 style="font-family: 'Rock Salt', cursive;color:white; text-align:center; margin-top:10%;">We got you covered</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main main-raised" ng-controller="claimHistoryCtrl">
+            <div class="">
+                <div class="container">
+
+                    <div class="title" style="padding:0px">
+                        <div class="text-center">
+                            <h1 class="text-info">Submitted claims currently in progress:</h1>
+
+                        </div>
+                        <div class="row text-center">
+                            <md-progress-circular md-mode="indeterminate" md-diameter="35px" ng-show="pageLoading" style="margin: 10px 0px 0px 5px;"></md-progress-circular>
+                        </div>
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                                    <input type="text" class="form-control" placeholder="Search claims" ng-model="searchInProgressClaim">
+
+                                </div>
+                            </div>
+                        </form>
+                       
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Reference#</th>
+                                    <th>Date Submitted</th>
+                                    <th>Product</th>
+                                    <th>Description</th>
+                                   <th>Claim Status</th>
+                                </tr>
+
+                            </thead>
+                           
+                            <tbody>
+                                <tr ng-repeat="i in claimsInProgressHistory| filter:searchInProgressClaim">
+                                    <td>  
+                                       #{{i.Claim_ID}}{{i.ActiveProductItems_ID}}
+                                    </td>
+                                    <td style="">{{i.claimDate|date:'yyyy-MM-dd'}}</td>
+                                    <td>{{i.productName}}</td>
+                                    <td style="width:400px">{{i.productDescription}}</td>
+                                    <td>{{i.claimStatus}}</td>
+                            
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <div class="row">
+                        
+                    </div>
+
+                    <div class="title" style="padding:0px">
+                        <div class="text-center">
+                            <h1 class="text-info">Finalised claims:</h1>
+
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <md-progress-circular md-mode="indeterminate" md-diameter="35px" ng-show="pageFinalizedLoading" style="margin: 10px 0px 0px 5px;"></md-progress-circular>
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                                <input type="text" class="form-control" placeholder="Search claims" ng-model="searchFinalisedClaim">
+
+                            </div>
+                        </div>
+                    </form>
+                   
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Reference#</th>
+                                <th>Date Sumbitted</th>
+                                <th>Product</th>
+                                <th>Description</th>
+                                <th>Claim Status</th>
+                                <th>Proof of Settlement Document</th>                  
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="i in claimsFinalized| filter:searchFinalisedClaim">
+                                <td style="text-align:center;">
+                                    #{{i.Claim_ID}}{{i.ActiveProductItems_ID}}
+                                </td>
+                                <td style="">{{i.claimDate|date:'yyyy-MM-dd'}}</td>
+                                <td>{{i.productName}}</td>
+
+                                <td style="width:400px">{{i.productDescription}}</td>
+                                <td>{{i.claimStatus}}</td>
+                                <td>
+                                    <a download="proofDocument.pdf" href="https://nanofinapifinal.azurewebsites.net/UploadFiles/claims/{{i.productName}}/{{i.ActiveProductItems_ID}}/proof.pdf" class="btn btn-info btn-raised btn-round"><i class="fa fa-cloud-download fa-2x"></i> <br />Download Proof</a>
+                                    <!--<a target="_blank" href="http://nanofinapifinal.azurewebsites.net/UploadFiles/claims/{{i.productName}}/{{i.ActiveProductItems_ID}}/lecture7.pdf" class="btn btn-info btn-raised btn-round"><i class="fa fa-cloud-download fa-2x"></i> <br />Download Proof</a>-->
+
+                                      <!--button class="btn btn-info btn-raised btn-round" ng-click="$location.path('/purchaseproduct/{{i.productID}}')"><i class="fa fa-shopping-cart fa-2x"></i> <br />Get with NanoBucks</button>-->
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

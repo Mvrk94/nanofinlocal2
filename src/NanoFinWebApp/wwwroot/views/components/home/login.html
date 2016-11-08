@@ -1,0 +1,86 @@
+﻿<div class="signup-page" style="background-image: url('../assets/img/pattern2.png');">
+    <!--ng-controller="loginPageController">-->
+    <div  ng-include="'views/shared/navbar/generalNav.html'"></div>
+    <div class="wrapper">
+        <div class="header header-filter">
+            <div>
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                            <div class="card card-signup" style="padding-right:15px; padding-top:10px">
+                                <div class="header header-primary text-center">
+                                    <h3 style="font-family: 'Montserrat', sans-serif;">Login</h3>
+                                    <!--<div class="social-line">
+                                        <a href="#pablo" class="btn btn-just-icon">
+                                            <i class="fa fa-facebook-square"></i>
+                                        </a>
+                                        <a href="#pablo" class="btn btn-just-icon">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                        <a href="#pablo" class="btn btn-just-icon">
+                                            <i class="fa fa-google-plus"></i>
+                                        </a>
+                                    </div>-->
+                                </div>
+                                <!--<p class="text-divider">Enter your details</p>-->
+                                <!--<span style="font-family: 'Montserrat', sans-serif; font-size:16px; color:#2196F3; margin-left:150px;">Sign in</span>-->
+                                <form ng-submit="submit()" ng-controller="loginCtrl" name="loginForm">
+                                    <fieldset>
+
+                                        <md-input-container class="md-icon-float md-block">
+                                            <label>User</label>
+                                            <md-icon><i class="material-icons">perm_identity</i></md-icon>
+                                            <input required name="user" ng-model="user" ng-disabled="loading"> <!--class="form-control"--> 
+                                            <div ng-messages="loginForm.user.$error">
+                                                <div ng-message="required">Required field - You may enter you username or email.</div>
+                                            </div>
+                                        </md-input-container>
+
+                                        <!--<div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">face</i>
+                                            </span>
+                                            <input type="text" name="user" ng-model="user" class="form-control" ng-disabled="loading" placeholder="username/email/cellphone number">
+                                        </div>-->
+
+                                        <md-input-container class="md-icon-float md-block">
+                                            <label>Password</label>
+                                            <md-icon><i class="material-icons">lock_outline</i></md-icon>
+                                            <input required type="password" ng-minlength="6" name="pass" ng-model="pass" ng-disabled="loading">    <!--class="form-control"-->
+                                            <div ng-messages="loginForm.pass.$error" role="alert">
+                                                <div ng-message="required">Required field</div>
+                                                <div ng-message="minlength">You must have at least 6 digits</div>
+                                            </div>
+                                        </md-input-container>
+
+
+                                        <!--<div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">lock_outline</i>
+                                            </span>
+                                            <input style="padding:10px;" type="password" name="pass" ng-model="pass" ng-disabled="loading" placeholder="Password..." class="form-control" />
+                                        </div>-->
+
+                                        <div class="footer text-center">
+                                            <button type="submit" ng-disabled="loading" class="btn btn-raised btn-success"><span style="font-family: 'Montserrat', sans-serif;">Sign in</span></button>
+
+                                            <a href="/signup">
+                                                <button class="btn btn-raised btn-warning"><span style="font-family: 'Montserrat', sans-serif;">Sign up</span></button>
+                                            </a>
+                                        </div>
+
+
+
+                                    </fieldset>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

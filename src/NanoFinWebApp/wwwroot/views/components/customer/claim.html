@@ -1,0 +1,331 @@
+﻿
+
+
+
+<div ng-controller="claimPageController">
+
+    <div ng-include="'views/shared/navbar/consumerNav.html'"></div>
+    <div class="wrapper">
+
+        <div class="header header-filter" style="background: url('../../assets/img/coverUmbrellas.jpg') no-repeat ; background-size:cover">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="brand">
+                            <h1 style="font-family: 'Rock Salt', cursive;color:white; text-align:center; margin-top:10%;">We got you covered</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main main-raised" ng-controller="claimCtrl">
+            <div class="">
+                <div class="container">
+
+
+                    <div class="title" style="padding:0px">
+                        <div class="text-center">
+                            <h1 class="text-info">Start the claim process of your {{productDetails.productName}} product:</h1>
+
+                        </div>
+                    </div>
+                    <!--div contains new step form code-->
+                    <!--<div ng-app="SampleWizardApp" ng-controller="SampleWizardController" rc-wizard ="sampleWizard">
+                        <ul class="nav nav-pills">
+
+                            <li class="active">
+                                <a class="active" href="#first" data-toggle="tab">
+                                    <span class="badge">1</span>
+                                    <span>First Step</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#second" data-toggle="tab">
+                                    <span class="badge">2</span>
+                                    <span>Second Step</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#last" data-toggle="tab">
+                                    <span class="badge">3</span>
+                                    <span>Last Step</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="first">
+                                <h2>Enter first step data</h2>
+                                <div class="form-group">
+                                    <label class="control-label">First Name</label>
+                                    <input name="firstName" class="form-control" type="text"
+                                           ng-model="user.firstName" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Last Name</label>
+                                    <input name="lastName" class="form-control" type="text"
+                                           ng-model="user.lastName" />
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="second">
+                                <h2>Enter second step data</h2>
+                                <div class="form-group">
+                                    <label class="control-label">Street Address</label>
+                                    <input name="streetAddress" class="form-control" type="text"
+                                           ng-model="user.streetAddress" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">City</label>
+                                    <input name="city" class="form-control" type="text"
+                                           ng-model="user.city" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">State</label>
+                                    <input name="state" class="form-control" type="text"
+                                           ng-model="user.state" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">City</label>
+                                    <input name="postalCode" class="form-control" type="text"
+                                           ng-model="user.postalCode" />
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="last">
+                                <h2>Finish last step</h2>
+                                <div class="form-group">
+                                    <label class="control-label">First Name:</label>
+                                    <p class="form-control-static">{{ user.firstName }}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Last Name:</label>
+                                    <p class="form-control-static">{{ user.lastName }}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Address:</label>
+                                    <p class="form-control-static">
+                                        {{ user.streetAddress }}
+                                        <br />
+                                        {{ user.city }}, {{ user.state }} {{ user.postalCode }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="pull-right">
+                                <a class="btn btn-default" ng-click="rc.sampleWizard.backward()" ng-hide="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex">Back</a>
+                                <a class="btn btn-primary">Continue</a>
+                            </div>
+                        </div>
+
+
+                    </div>-->
+                    <!-- end div new wizard code-->
+
+
+                    <div><!--div contains all old code-->
+                    <div>
+                                            <h1 class="text-info">Step 1:</h1>
+
+                        <h4>{{productClaimTemplate.section1.name}}</h4>
+                       
+                    
+                        <form name="claimForm">
+                            <div class="form-group" ng-repeat="field in productClaimTemplate.section1.fields">
+                                <ng-form name= "PrincipalMemForm">
+
+                                    <label class="control-label">{{field.label}}</label>
+
+                                    <input type = "{{field.type}}" ng-model="field.data" class="form-control" required />
+
+                                </ng-form>
+                                
+                           </div>
+
+                        </form>
+                        
+                    </div>
+                      
+
+                        <div>
+
+                            <h1 class="text-info">Step 2:</h1>
+
+                            <h4>{{productClaimTemplate.section2.name}}</h4>
+
+
+                            <form name="claimForm">
+                                <div class="form-group" ng-repeat="field in productClaimTemplate.section2.fields">
+                                    <ng-form name="PrincipalMemForm">
+
+                                        <label class="control-label">{{field.label}}</label>
+
+                                        <input type="{{field.type}}" ng-model="field.data" class="form-control" required />
+
+                                    </ng-form>
+
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <div>
+
+                            <h1 class="text-info">Step 3:</h1>
+
+                            <h4>{{productClaimTemplate.section3.name}}</h4>
+
+
+                            <form name="claimForm">
+                                <div class="form-group" ng-repeat="field in productClaimTemplate.section3.fields">
+                                    <ng-form name="PrincipalMemForm">
+
+                                        <label class="control-label">{{field.label}}</label>
+
+                                        <input type="{{field.type}}" ng-model="field.data" class="form-control" required />
+
+                                    </ng-form>
+
+                                </div>
+
+                            </form>
+                        </div>
+
+
+               
+                    <hr style="color:blue"/>
+                    <div>
+                        <h1 class="text-info">Step 4:</h1>
+                        <h4>Upload the following documents:</h4>
+
+
+
+                    </div>
+
+                    <div class="panel-body">
+
+                        <ul>
+                            <li ng-repeat="field in productClaimTemplate.section4.fields">
+                                {{field.label}}
+                            </li>
+                        </ul>
+                        <!--<table class="table table-hover table-bordered">-->
+                            <!--<thead>
+                                <tr>
+                                    <td>Title</td>
+                                    <td>Image</td>
+                                    <td>Size</td>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="image in imagesrc track by $index">
+
+                                    <td>{{image.Name}}</td>
+                                    <td><img ng-src="{{image.Src}}" title="{{image.title}}" style="width:100px;" /></td>
+                                    <td>{{image.Size}}</td>
+                                </tr>
+                            </tbody>-->
+
+                        <!--</table>-->
+
+                        <div class="row">
+                           
+                            <div class="col-lg-7">
+                                <input type="file" ng-files="getTheFiles($files)" />
+                            </div>
+                            <div class="col-lg-5">
+                                <input type="button" class="btn btn-raised btn-success" ng-click="uploadFiles()" value="Upload"/>
+                                <input type="button" class="btn btn-raised btn-success" ng-click="reset()" value="Cancel" />
+                            </div>
+
+                        </div>
+
+                        <!--<div class="row">
+
+                            <a target="_self" href="/assets/img/profile1.png" download="profile.png" >Download</a>
+                        </div>-->
+
+
+                        </div>
+
+                       <div class="text-center">
+                           <input type="button" class="btn btn-raised btn-info" value="Submit"/>   
+                       </div>
+
+
+
+                    <div class="row" style="width:50%; margin:0 auto; padding-top:0">
+                        <div class="card card-nav-tabs" md-whiteframe="14" layout-align="center">
+                            <div class="header-info" style="padding:3%">
+                                <!-- rgba(0, 116, 179, 0.05) -->
+                                <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                                <div class="nav-tabs-navigation" style="text-align:center">
+                                    <div class="nav-tabs-wrapper">
+                                        <i class="fa fa-file-text-o fa-4x"></i>
+                                        <h3>Claim Details</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content" style="padding:0px;">
+                                <!--md-whiteframe="9"-->
+                                <div class="tab-content text-center">
+                                    <div class="tab-pane active" id="profile">
+                                        <div class="row">
+                                            <div class="col-md-6 col-md-offset-3">
+                                                <h4>Please submit the following details:</h4>
+                                                <div class="form-group">
+                                                    <input type="text"
+                                                           placeholder="Your full name" class="form-control"
+                                                           id="txtFullName"
+                                                           ng-model="sendForm.amount" required />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <input type="text"
+                                                           placeholder="Your resedential address" class="form-control"
+                                                           id="txtIDnumber"
+                                                           ng-model="sendForm.amount" required />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <input type="text"
+                                                           placeholder="Your ID number/Passport No" class="form-control"
+                                                           id="txtIDnumber"
+                                                           ng-model="sendForm.amount" required />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <input type="file" multiple ng-files="getTheFiles($files)"/>
+
+                                                    <input type="button" ng-click="uploadFiles()" value="Upload Certified ID Document" />
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="header-info" style="border:1px; width:100%; margin:5px 0px 5px 0px;" />
+                                <!--<button class="btn btn-success" ng-click="buyBulk(buyBulkForm.amount,buyBulkForm.resellerID)" style="margin-left:15px;">purchase</button>-->
+                                <md-content layout-align="center" id="sendVoucher-ToastContainer">
+                                    <div layout-align="center" layout="row" class="inset" paddi>
+                                        <md-button class="md-primary md-hue-1" ng-hide="isLoading"  style="margin-left:15px;">Submit</md-button>
+                                        <md-progress-circular md-mode="indeterminate" md-diameter="20px" ng-show="isLoading" style="margin: 10px 0px 0px 5px;"></md-progress-circular>
+                                    </div>
+                                </md-content>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br/>
+                    <br />
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+    </div>

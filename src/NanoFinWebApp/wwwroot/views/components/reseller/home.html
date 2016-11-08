@@ -1,0 +1,343 @@
+﻿<div ng-controller="resellerPageController">
+    <div ng-include="'views/shared/navbar/resellernav.html'"></div>
+
+    <div class="profile-page">
+
+        <div class="header header-filter" style="background: url('../../assets/img/jhb.jpg') no-repeat center center; background-size: 100%;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="brand">
+                            <h1 style="font-family: 'Rock Salt', cursive; color:white; text-align:center; margin-top:10%;">
+                                Make money. Do good.
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper" ng-controller="resellerCtrl">
+            <div class="main main-raised">
+                <div class="profile-content">
+                    <div class="container">
+
+                        <div class="tabbedContentContainer">
+                            <ul class="nav nav-pills nav-pills-success nav-justified" role="tablist">
+                                <li class="active">
+                                    <a href="" data-toggle="tab" data-target="#home">
+                                        <i class="fa fa-home fa-2x"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" data-toggle="tab" data-target="#buyBulkVoucherTab">
+                                        <i class="material-icons">attach_money</i>
+                                        Buy Voucher
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" data-toggle="tab" data-target="#purchased">
+                                        <i class="material-icons">credit_card</i>
+                                        Purchased Vouchers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" data-toggle="tab" data-target="#sent">
+                                        <i class="material-icons">sentiment_satisfied</i>
+                                        Sent Vouchers
+                                    </a>
+                                </li>
+                               
+                            </ul>
+
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="home">
+                                    <div>
+                                        <!--  class="description text-center" -->
+                                        <h1 style="text-align:center">Home</h1>
+                                        <div class="homeContent">
+                                            <hr />
+                                        </div>
+
+                                        <h3 style="color:dimgray; text-align:center ">Your account at a quick glance</h3>
+
+                                        <div layout="row" layout-align="center center" style="width: 80%; margin: auto; ">
+                                            <div flex="100">
+                                                <md-card md-theme="">
+
+                                                    <md-card-title>
+
+                                                        <md-card-title-text>
+                                                            <span class="md-display-1">Current Voucher Balance </span>
+
+                                                            <span class="md-display-2">{{currentVoucherBalance | currency:"R":2}} </span>
+                                                            <span class="md-headline">Total Cash Earned: {{totalCashEarned | currency:"R":2}} </span>
+
+                                                        </md-card-title-text>
+
+                                                        <md-card-title-media>
+                                                            <div class="md-media-lg card-media"><img src="assets/img/nanofindude.png"  /></div>      <!--style="width:80px; height:80px;"-->
+                                                        </md-card-title-media>
+                                                        
+
+                                                    </md-card-title>
+
+
+                                                </md-card>
+                                            </div>
+                                        </div>
+
+                                        <h3 style="color:dimgray; text-align:center">Sell vouchers</h3>
+
+                                        <!--purchase voucher-->
+
+                                        
+                                        <div class="row" style="width:65%; margin:auto;">
+                                            <div class="card card-nav-tabs" md-whiteframe="14">
+                                                <div class="header-info" style="padding:3%">
+                                                    <!-- rgba(0, 116, 179, 0.05) -->
+                                                    <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                                                    <div class="nav-tabs-navigation">
+                                                        <div class="nav-tabs-wrapper">
+                                                            <h4>Send Voucher</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="content" style="padding:0px;">
+                                                    <!--md-whiteframe="9"-->
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="profile">
+                                                            <div class="row">
+                                                                <div class="col-md-6 col-md-offset-3">
+                                                                    <h3 class="text-center"> Send Voucher</h3>
+
+                                                                    <form name="resellerSendVoucher">
+
+                                                                        <md-input-container class="md-icon-float md-block">
+                                                                            <label>Amount</label>
+                                                                            <md-icon><i class="material-icons">account_balance_wallet</i></md-icon>
+                                                                            <input required type="number" name="sendBulkAmount" ng-model="sendBulkForm.amount" ng-pattern="/^[0-9]{1,6}$/">
+                                                                            <div ng-messages="resellerSendVoucher.sendBulkAmount.$error">
+                                                                                <div ng-message="pattern">Please enter only digits</div>
+                                                                                <div ng-message="required">Required field</div>
+                                                                            </div>
+                                                                        </md-input-container>
+
+                                                                        
+
+                                                                        <md-input-container class="md-icon-float md-block">
+                                                                            <label>Recipient Details</label>
+                                                                            <md-icon><i class="material-icons">account_box</i></md-icon>
+                                                                            <input required name="txtSendBulkTo_userDetails" ng-model="sendBulkForm.recipientDetails">
+                                                                            <div ng-messages="resellerSendVoucher.txtSendBulkTo_userDetails.$error">
+                                                                                <div ng-message="required">Required field - you may enter the recipient username, cellphone or email</div>
+                                                                            </div>
+                                                                        </md-input-container>
+
+                                                                    </form>
+
+
+                                                                    <!--<div class="form-group">
+                                                                        <input type="number"
+                                                                               placeholder="Amount to send" class="form-control"
+                                                                               id="txtSendBulkAmount"
+                                                                               ng-model="sendBulkForm.amount" required />
+                                                                    </div>
+                                                                    
+                                                                    <div class="form-group">
+                                                                        <input type="text" value="" placeholder="Send To user name,/cell phone/Email"
+                                                                               class="form-control" id="txtSendBulkTo_userDetails"
+                                                                               ng-model="sendBulkForm.recipientDetails" required />
+
+                                                                       
+
+                                                                    </div>-->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="header-info" style="border:1px; width:100%; margin:5px 0px 5px 0px;" />
+                                                    <!--<button class="btn btn-success" ng-click="buyBulk(buyBulkForm.amount,buyBulkForm.resellerID)" style="margin-left:15px;">purchase</button>-->
+                                                    <md-content id="sendVoucher-ToastContainer">
+                                                        <div layout-fill layout="row" class="inset" paddi>
+                                                            <md-button class="md-primary md-hue-1" ng-hide="isLoading" ng-click="sendBulkVoucher(sendBulkForm.amount,  sendBulkForm.recipientDetails, 'sendVoucher-ToastContainer')" style="margin-left:15px;">Send</md-button>
+                                                            <md-progress-circular md-mode="indeterminate" md-diameter="20px" ng-show="isLoading" style="margin: 10px 0px 0px 5px;"></md-progress-circular>
+                                                        </div>
+                                                    </md-content>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="buyBulkVoucherTab">
+                                    <div class="BuyVoucherContent">
+                                        <h1 style="text-align:center">Buy a Voucher</h1>
+
+
+                                        <!-- PAYMENT STUFFS BRUH -->
+                                       
+                                        <div id="formToAdd" ng-show='paymentCardVisible'></div>
+
+                                        <div  class="row" style="width:65%; margin:auto;" ng-hide="paymentCardVisible"> <!--Card-->   
+                                            <div class="card card-nav-tabs" md-whiteframe="14">
+                                                <div class="header-info" style="padding:3%">
+                                                    <!-- rgba(0, 116, 179, 0.05) -->
+                                                    <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                                                    <div class="nav-tabs-navigation">
+                                                        <div class="nav-tabs-wrapper">
+                                                            <h4>Purchase Voucher</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="content" style="padding:0px;">
+                                                    <!--md-whiteframe="9"-->
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="profile">
+                                                            <div class="row">
+                                                                <div class="col-md-6 col-md-offset-3">
+                                                                   
+                                                                    <h3 class="text-center">Buy a Voucher</h3>
+
+                                                                    <form name="resellerPurchaseVoucher">
+                                                                        <md-input-container class="md-icon-float md-block">
+                                                                            <label>Amount</label>
+                                                                            <md-icon><i class="material-icons">credit_card</i></md-icon>
+                                                                            <input type="number" required name="txtBuyBulkAmount" ng-model="buyBulkForm.amount" ng-pattern="/^[0-9]{1,6}$/"> 
+                                                                            <div ng-messages="resellerPurchaseVoucher.txtBuyBulkAmount.$error">
+                                                                                <div ng-message="pattern">Please enter only digits</div> 
+                                                                                <div ng-message="required">Required field - enter the amount you would like to purchase</div>
+                                                                            </div>
+                                                                        </md-input-container>
+
+
+                                                                    </form>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="header-info" style="border:1px; width:100%; margin:5px 0px 5px 0px;" />
+                                                    <!--<button class="btn btn-success" ng-click="buyBulk(buyBulkForm.amount,buyBulkForm.resellerID)" style="margin-left:15px;">purchase</button>-->
+                                                    <md-content id="sendVoucher-ToastContainer">
+                                                        <div layout-fill layout="row" class="inset" paddi>
+                                                            <!--<md-button class="md-primary md-hue-1" ng-click="buyBulk(buyBulkForm.amount)" style="margin-left:15px;">purchase</md-button>-->
+                                                            <md-button class="md-primary md-hue-1" ng-click="initializePayment(buyBulkForm.amount)" style="margin-left:15px;">purchase</md-button>
+                                                        </div>
+                                                    </md-content>
+                                                </div>
+                                            </div>
+                                        </div> <!--/Card -->
+                                        
+
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="purchased">
+                                    <div class="purchasedContent">
+                                        <div>
+                                            <!-- class="description text-center" -->
+                                            <h1 style="text-align:center">Your Previously Purchased Vouchers</h1>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-md-6 col-md-offset-3">
+
+
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Search:</label>
+                                                    <input type="text" class="form-control" ng-model="userSearch">
+                                                </div>
+
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">#</th>
+                                                            <th ng-click="purchasedVouchers_SortOrder = 'transactionAmount'; ascending = !ascending; "><a>Amount</a></th>
+                                                            <th ng-click="purchasedVouchers_SortOrder = 'transactionDate'; ascending = !ascending;"><a>Date   Time</a></th>
+                                                            <th>
+                                                                <md-button class="md-icon-button md-primary" aria-label="Refresh" ng-click="isLoading = true; getPurchasedBulkVouchers()" ng-hide="isLoading">
+                                                                    <i class="material-icons">loop</i>
+                                                                </md-button>
+                                                                <md-progress-circular md-mode="indeterminate" md-diameter="20px" ng-show="isLoading" style="margin: 10px 0px 0px 5px;"></md-progress-circular>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="purchasedBulkVoucher in purchasedBulkVouchers | filter: userSearch | orderBy:purchasedVouchers_SortOrder:ascending ">
+                                                            <td class="text-center"> {{$index + 1}}</td>
+                                                            <td>{{purchasedBulkVoucher.transactionAmount | currency:"R":0}}</td>
+                                                            <td>{{purchasedBulkVoucher.transactionDate | date:'yyyy-MM-dd HH:mm'}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="sent">
+                                    <div class="sentContent">
+                                        <div>
+                                            <!-- class="description text-center"  -->
+                                            <h1 style="text-align:center">Your Previously Sold Vouchers</h1>
+
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-md-6 col-md-offset-3">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Search:</label>
+                                                    <input type="text" class="form-control" ng-model="userSearchSent">
+                                                </div>
+
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">#</th>
+                                                            <!-- sent to - first name; user name; amount; date time -->
+                                                            <th ng-click="sentVouchers_SortOrder = 'userFirstName'; ascending = !ascending; "><a>Recipient Name</a></th>
+                                                            <th ng-click="sentVouchers_SortOrder = 'userName'; ascending = !ascending; "><a>Recipient UserName</a></th>
+                                                            <th ng-click="sentVouchers_SortOrder = 'amount'; ascending = !ascending; "><a>Amount</a></th>
+                                                            <th ng-click="sentVouchers_SortOrder = 'dateSent'; ascending = !ascending;"><a>Date   Time</a></th>
+                                                            <th>
+                                                                <md-button class="md-icon-button md-primary" aria-label="Refresh" ng-click="isLoading = true; getSentBulkVouchersWithUserDetails()" ng-hide="isLoading">
+                                                                    <i class="material-icons">loop</i>
+                                                                </md-button>
+                                                                <md-progress-circular md-mode="indeterminate" md-diameter="20px" ng-show="isLoading" style="margin: 10px 0px 0px 5px;"></md-progress-circular>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="sentBulkVoucher in sentBulkVouchers | filter: userSearchSent | orderBy:sentVouchers_SortOrder:ascending ">
+                                                            <td class="text-center"> {{$index + 1}}</td>
+                                                            <td>{{sentBulkVoucher.userFirstName}}</td>
+                                                            <td>{{sentBulkVoucher.userName}}</td>
+                                                            <td>{{sentBulkVoucher.amount | currency:"R":0}}</td>
+                                                            <td>{{sentBulkVoucher.dateSent | date:'yyyy-MM-dd HH:mm'}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <br /><br /><br /><br /><br />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

@@ -1,0 +1,90 @@
+{
+    "client": {
+        "setting": {
+            "name": "Appfy App",
+            "slug": "appfy-app",
+            "email": "help@appfy.org",
+            "logo": "/assets/images/logo.png",
+            "version": "0.0.1",
+            "title": "Appfy App",
+            "locale": "en_US",
+            "baseUrl": "https://appfy.org",
+            "titleSeparator": " — ",
+            "description": "Appfy App",
+            "keywords": "",
+            "icon": "/assets/favicon.png",
+            "copyright": "",
+            "ogLocale": "pt_BR",
+            "ogSiteName": "Appfy App",
+            "ogTitle": "Appfy App",
+            "ogDescription": "Appfy App",
+            "ogUrl": "https://appfy.org",
+            "ogImage": "",
+            "articleSection": "",
+            "articleTag": "",
+            "session": 1800,
+            "firebase": {
+                "apiKey": "",
+                "authDomain": "",
+                "databaseURL": "",
+                "storageBucket": ""
+            },
+            "facebook": {},
+            "google": {}
+        }
+    },
+    "email": {
+        "logo": "http://i.imgur.com/8yh0COR.png",
+        "footer": ""
+    },
+    "environment": {
+        "development": {
+            "enviroment": "development",
+            "api": {
+                "url": "http://localhost:9000"
+            },
+            "mongo": {
+                "uri": "mongodb://localhost/appfy-app-dev"
+            }
+        },
+        "production": {
+            "enviroment": "production",
+            "api": {
+                "url": "https://appfy-app-server.com"
+            }
+        }
+    },
+    "deployment": {
+        "heroku": {
+            "client": "heroku-app",
+            "server": "heroku-app"
+        },
+        "github": {
+            "client": "user/repo"
+        }
+    },
+    "sparkpost": {
+        "template": "template-slug"
+    },
+    "sendgrid": {
+        "templates": {
+            "settings": {
+                "enable": 1,
+                "template_id": "0"
+            }
+        }
+    },
+    "firebase": {
+        "databaseURL": "",
+        "type": "",
+        "project_id": "",
+        "private_key_id": "",
+        "private_key": "",
+        "client_email": "",
+        "client_id": "",
+        "auth_uri": "",
+        "token_uri": "",
+        "auth_provider_x509_cert_url": "",
+        "client_x509_cert_url": ""
+    }
+}

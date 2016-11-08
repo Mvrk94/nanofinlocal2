@@ -1,0 +1,271 @@
+﻿<div ng-controller="profilePageController">
+    <div ng-include="'views/shared/navbar/consumerNav.html'"></div>
+
+    <div class="wrapper" ng-controller="profileCtrl">
+
+        <div class="header header-filter" style="background: url('../../assets/img/coverUmbrellas.jpg') no-repeat ; background-size:cover">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="brand">
+                            <h1 style="font-family: 'Rock Salt', cursive;color:white; text-align:center; margin-top:10%;">We got you covered</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main main-raised" >
+            <div class="">
+                <div class="container">
+
+                    <div class="title" style="padding:0px">
+                        <div class="text-center">
+                            <h1 class="text-info">Your Profile:</h1>
+                        </div>
+                    </div>
+
+                    <div style="text-align:center">
+                    <div class="row" layout-align ="center" style="width:40%; display: inline-block">
+                        <div class="card card-nav-tabs" md-whiteframe="14">
+                            <div class="header-info" style="padding:3%; background: linear-gradient(60deg, #0288d1, #29b6f6);">
+                                <!-- rgba(0, 116, 179, 0.05) -->
+                                <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                                <div class="nav-tabs-navigation">
+                                    <div class="nav-tabs-wrapper" style="text-align:center">
+                                        <img src="../../assets/img/profile1.png" class="img-raised img-circle" />
+                                        <h3 >{{userProfileInfo.userFirstName}}</h3> <h3> {{userProfileInfo.userLastName}} </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content" style="padding:0px;">
+                                <!--md-whiteframe="9"-->
+                                <div class="tab-content text-center">
+                                    <div class="tab-pane active" id="profile">
+                                        <div class="row">
+                                            <div class="col-md-10 col-md-offset-1">
+                                               
+                                                <h5>Date of Birth:<br/> <span class="md-title"> {{userProfileInfo.dateOfBirth| date:'yyyy-MM-dd'}}</span></h5>
+                                                
+                                                <h5>Address: <br /><span class="md-title">{{userProfileInfo.address}}</span></h5>
+                                                
+                                                <h5>User-name:<br /> <span class="md-title">{{userProfileInfo.userName}}</span></h5>
+                                                
+                                                <h5>Email:<br /><span class="md-title"> {{userProfileInfo.userEmail}}</span></h5>
+                                                <h5>Contact number:<br /><span class="md-title"> {{userProfileInfo.userContactNumber}}</span></h5>
+                                                <br />
+                                                <br />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr class="header-info" style="border:1px; width:100%; margin:5px 0px 5px 0px;" />
+                                <!--<button class="btn btn-success" ng-click="buyBulk(buyBulkForm.amount,buyBulkForm.resellerID)" style="margin-left:15px;">purchase</button>-->
+                                <md-content id="updateProfile-ToastContainer">
+                                    <div layout="column">
+                                    <div layout-align="center" class="inset" paddi>
+                                        <md-button class="md-primary md-hue-1" style="margin-left:15px;" ng-click="updateProfileModal()">Update Profile</md-button>      
+                                    </div>
+                                    <div layout-align="center" class="inset" paddi>
+                                        <md-button class="md-accent" style="margin-right:15px;" ng-click="deactivateProfile()" ng-disabled="disabling">Deactivate Profile</md-button>
+                                    </div>
+                                        </div>
+                                </md-content>
+
+                                <!--<button class="btn btn-success" ng-click="buyBulk(buyBulkForm.amount,buyBulkForm.resellerID)" style="margin-left:15px;">purchase</button>-->
+
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                    <br />
+                    <br />
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <!--Additonal details Modal-->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog" style="width:800px;">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><span style="font-family: 'Montserrat', sans-serif; font-size:25px; color:#2196F3;"><i class="fa fa-pencil"></i> Update Your Profile Information</span></h4>
+
+                        <h4 style="color:#2196f3">Please complete the following details to update:</h4>
+                    </div>
+                    <div class="modal-body" style="padding-top:0px;">
+                        <form name="updateProfForm">
+                            <div class="row">
+                                <h5>
+                                    <span style="font-family: 'Montserrat', sans-serif; font-size:20px; color:#808080">Personal Information</span>
+                                </h5>
+                                <hr style="color:#808080; border-top:2px dotted lightgray;" />
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <md-input-container class="md-icon-float md-block">
+                                        <!-- Use floating label instead of placeholder -->
+                                        <label>First Name</label>
+                                        <md-icon><i class="fa fa-circle-o"></i></md-icon>
+                                        <input ng-model="consumer.firstName" required type="text" name="firstName">
+                                        <div ng-messages="updateProfForm.firstName.$error" role="alert">
+                                            <div ng-message="required">Required field</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-icon-float md-block">
+                                        <!-- Use floating label instead of placeholder -->
+                                        <label>Last Name</label>
+                                        <md-icon><i class="fa fa-circle-o"></i></md-icon>
+                                        <input ng-model="consumer.lastName" required type="text" name="lastName">
+                                        <div ng-messages="updateProfForm.lastName.$error" role="alert">
+                                            <div ng-message="required">Required field</div>
+                                        </div>
+                                    </md-input-container>
+                                  
+                                    <md-input-container class="md-icon-float md-block">
+                                        <!-- Use floating label instead of placeholder -->
+                                        <label>User-name</label>
+                                        <md-icon><i class="fa fa-circle-o"></i></md-icon>
+                                        <input ng-model="consumer.userName" required type="text" name="userName">
+                                        <div ng-messages="updateProfForm.userName.$error"  role="alert">
+                                            <div ng-message="required">Required field</div>
+                                            <!--<div ng-message="notUniqueError">User-name must be unique</div>-->
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-icon-float md-block">
+                                        <!-- Use floating label instead of placeholder -->
+                                        <label>Address</label>
+                                        <md-icon><i class="fa fa-circle-o"></i></md-icon>
+                                        <input ng-model="consumer.address" required type="text" name="address">
+                                        <div ng-messages="updateProfForm.address.$error" role="alert">
+                                            <div ng-message="required">Required field</div>
+                                            <!--<div ng-message="notUniqueError">User-name must be unique</div>-->
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-icon-float md-block">
+                                        <!-- Use floating label instead of placeholder -->
+                                        <label>Date of Birth (yyyy-mm-dd)</label>
+                                        <md-icon><i class="fa fa-circle-o"></i></md-icon>
+                                        <input ng-model="consumer.dob" required type="text" name="dob">
+                                        <div ng-messages="updateProfForm.dob.$error" role="alert">
+                                            <div ng-message="required">Required field</div>
+                                            <!--<div ng-message="notUniqueError">User-name must be unique</div>-->
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-icon-float md-block">
+
+                                        <label>Marital Status</label>
+                                        <br />
+                                        <md-icon><i class="fa fa-cirlce-o" style="color:black"></i></md-icon>
+                                        <select required ng-model="consumer.maritalStatus" class="form-control" name="maritalStatus" style="color:#2196F3">
+                                            <option value="Single">Single</option>
+                                            <option value="Married">Married</option>
+                                           
+                                        </select>
+
+                                        <div class="errors" ng-messages="updateProfForm.maritalStatus.$error">
+                                            <div ng-message="required">Required field</div>
+                                        </div>
+                                    </md-input-container>
+
+                                  
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <h5>
+                                    <span style="font-family: 'Montserrat', sans-serif; font-size:20px; color:#808080">Contact Information</span>
+                                </h5>
+                                <hr style="color:#808080; border-top:2px dotted lightgray;" />
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+
+                                    <md-input-container class="md-icon-float md-block">
+                                        <!-- Use floating label instead of placeholder -->
+                                        <label>Email</label>
+                                        <md-icon><i class="fa fa-circle-o"></i></md-icon>
+                                        <input ng-model="consumer.email" required name="email" minlength="10" maxlength="100" type="email">
+                                        <div ng-messages="updateProfForm.email.$error" role="alert">
+                                            <div ng-message="required">Required field</div>
+                                            <div ng-message="pattern">Your email must be between 10 and 100 characters long and look like an e-mail address.</div>
+                                            <!--<div ng-message="notUniqueError">User-name must be unique</div>-->
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-icon-float md-block">
+                                        <!-- Use floating label instead of placeholder -->
+                                        <label>Contact Number</label>
+                                        <md-icon><i class="fa fa-circle-o"></i></md-icon>
+                                        <input ng-model="consumer.contactNumber" required type="text" min="0" max="10" name="contactNumber">
+                                        <div ng-messages="updateProfForm.contactNumber.$error" role="alert">
+                                            <div ng-message="required">Required field</div>
+                                            <div ng-message="max">Must be a valid phone number of 10 digits</div>
+                                            <!--<div ng-message="notUniqueError">User-name must be unique</div>-->
+                                        </div>
+                                    </md-input-container>
+
+                                    </div>
+                                </div>
+
+                          
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <div class="text-center">
+                            <md-progress-circular class="text-center" md-mode="indeterminate" md-diameter="20px" ng-show="isLoadingSave" style="margin: 10px 0px 0px 5px; text-align:center"></md-progress-circular>
+                        </div>
+                        <button ng-disabled="isFormNotCompletedYet||isLoadingSave" ng-click="SaveAdditonalDetails()" type="button" class="btn btn-success btn-raised btn-round">Submit</button>
+                        <button ng-click="laterClicked()" type="button" class="btn btn-danger btn-raised btn-round">Cancel</button>
+                    </div>
+
+
+
+                   
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+ <!--AlertModal-->
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <!--<h4 class="modal-title" id="myModalLabel">Thank You! Your additional details have been captured.</h4>-->
+                <h4 class="modal-title"><span style="font-family: 'Montserrat', sans-serif; font-size:25px; color:#2196F3;"><i class="fa fa-thumbs-up"></i>Thank You! Your new details have been captured.</span></h4>
+
+
+
+            </div>
+            <div class="modal-body">
+                <h4 style="color:#2196f3">Click OK to continue browsing the site</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">OK</button>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "name": "appfy-wiki",
+  "version": "0.0.1",
+  "description": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Appfy/appfy-wiki"
+  },
+  "main": [
+    "appfy-wiki.min.js",
+    "appfy-wiki.min.css"
+  ]
+}

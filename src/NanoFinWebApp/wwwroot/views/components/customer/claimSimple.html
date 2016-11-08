@@ -1,0 +1,283 @@
+﻿<div ng-controller="claimSimplePageController">
+
+    <div ng-include="'views/shared/navbar/consumerNav.html'"></div>
+    <div class="wrapper">
+
+        <div class="header header-filter" style="background: url('../../assets/img/coverUmbrellas.jpg') no-repeat ; background-size:cover">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="brand">
+                            <h1 style="font-family: 'Rock Salt', cursive;color:white; text-align:center; margin-top:10%;">We got you covered</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main main-raised" id="popupContainer">
+            <div class="">
+                <div class="container">
+                    
+                  
+                    <div id="wizard-container" ng-controller="claimSimpleCtrl as vm">
+                        <div class="text-center">
+                            <h2 class="text-info">Start the claim process of your {{activeProductDetails.productName}} product:</h2>
+                        </div>
+
+                        <div class="text-center">
+                            <md-progress-circular md-mode="indeterminate" md-diameter="50px" ng-show="pageLoading" style="margin: 10px 0px 0px 5px;"></md-progress-circular>
+                        </div>
+
+
+                        <div id="wizard-step-container">
+                            <ul class="nav nav-pills nav-justified nav-pills-info">
+                                <li ng-repeat="step in vm.steps" ng-class="{'active':step.step == vm.currentStep}"><a ng-click="vm.gotoStep(step.step)" href=""><span class="badge">{{step.step}}</span> {{step.name}}</a></li>
+                            </ul>
+                         </div>
+
+                        <div id="wizard-content-container">
+                            <div class="col-md-8 col-md-offset-2 text-info">
+                                <h3 class="text-info text-center">{{vm.steps[vm.currentStep-1].name}}:</h3>
+                                
+                                <!--div for last step as a table header:-->
+                                <div ng-show="vm.currentStep == vm.steps.length">
+                                   <div class="row">
+                                     <div class="col-md-4">
+                                        <b>Document:</b>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <b>Preferred Format:</b>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <b>Preparation Required</b>
+                                    </div>
+                                 </div>
+                                    <hr style="padding:0px; margin:0px; border-color:darkgrey; color:darkgrey; " />
+                                </div>
+
+                                <form name="claimForm" autocomplete="on">
+                                    <div ng-repeat="field in vm.getStepTemplate()">
+                                            
+                                    <!--some predeterminded fields we have data for-->
+                                        <div ng-if="field.type=='text'&& vm.currentStep==1 && field.label =='Name and Surname'" class="form-group" style="padding:0px">
+                                            <ng-form name="claimFieldForm">
+                                                <label class="control-label">{{field.label}}:</label>
+                                                <input type="{{field.type}}" name="fieldname" class="form-control" ng-model="field.data" ng-init="field.data =userProfileInfo.userFirstName + ' ' +userProfileInfo.userLastName" ng-required="field.required" autocomplete="on">
+                                                <!--placeholder="{{field.label}}-->
+                                                <!--<p class="help-block" ng-show="claimFieldForm.fieldname.$touched && claimFieldForm.fieldname.$valid">Required!</p>-->
+                                                <span class="text-danger" ng-show="claimFieldForm.fieldname.$dirty && claimFieldForm.$error.required">
+                                                    Required!
+                                                </span>
+                                                <!--<span ng-show= "{{'claimForm.'+field.name+'.$d          <!--<span ng-show= "{{'claimForm.'+field.name+'.$dirty && claimForm.'+field.name+'.$error.required'}}">Required!</span>-->
+                                            </ng-form>
+                                        </div>
+
+                                        <div ng-if="field.type=='text'&& vm.currentStep==1 && field.label =='Policy Number'" class="form-group" style="padding:0px">
+                                            <ng-form name="claimFieldForm">
+                                                <label class="control-label">{{field.label}}:</label>
+                                                <input type="{{field.type}}" name="fieldname" class="form-control" ng-model="field.data" ng-value="field.data=activeProductDetails.activeProductItemPolicyNum"  ng-required="field.required" autocomplete="on">
+                                                <!--placeholder="{{field.label}}-->
+                                                <!--<p class="help-block" ng-show="claimFieldForm.fieldname.$touched && claimFieldForm.fieldname.$valid">Required!</p>-->
+                                                <span class="text-danger" ng-show="claimFieldForm.fieldname.$dirty && claimFieldForm.$error.required">
+                                                    Required!
+                                                </span>
+                                              
+                                            </ng-form>
+                                        </div>
+
+                                     
+
+                                        <div ng-if="field.type=='text'&& vm.currentStep==1 && field.label =='Contact Cell No'" class="form-group" style="padding:0px">
+                                            <ng-form name="claimFieldForm">
+                                                <label class="control-label">{{field.label}}:</label>
+                                                <input type="{{field.type}}" name="fieldname" class="form-control" ng-model="field.data" ng-init="field.data = userProfileInfo.userContactNumber" ng-required="field.required" autocomplete="on" contenteditable="true">
+                                                <!--placeholder="{{field.label}}-->
+                                                <!--<p class="help-block" ng-show="claimFieldForm.fieldname.$touched && claimFieldForm.fieldname.$valid">Required!</p>-->
+                                                <span class="text-danger" ng-show="claimFieldForm.fieldname.$dirty && claimFieldForm.$error.required">
+                                                    Required!
+                                                </span>
+                                                <!--<span ng-show= "{{'claimForm.'+field.name+'.$d          <!--<span ng-show= "{{'claimForm.'+field.name+'.$dirty && claimForm.'+field.name+'.$error.required'}}">Required!</span>-->
+                                            </ng-form>
+                                        </div>                                 
+
+                                        <div ng-if="field.type=='text'&& vm.currentStep==1 && field.label =='Postal Address'" class="form-group" style="padding:0px">
+                                            <ng-form name="claimFieldForm">
+                                                <label class="control-label">{{field.label}}:</label>
+                                                <input type="{{field.type}}" name="fieldname" class="form-control" ng-model="field.data" ng-init="field.data = userProfileInfo.address" ng-required="field.required" autocomplete="on" contenteditable="true">
+                                                <!--placeholder="{{field.label}}-->
+                                                <!--<p class="help-block" ng-show="claimFieldForm.fieldname.$touched && claimFieldForm.fieldname.$valid">Required!</p>-->
+                                                <span class="text-danger" ng-show="claimFieldForm.fieldname.$dirty && claimFieldForm.$error.required">
+                                                    Required!
+                                                </span>
+                                                <!--<span ng-show= "{{'claimForm.'+field.name+'.$d          <!--<span ng-show= "{{'claimForm.'+field.name+'.$dirty && claimForm.'+field.name+'.$error.required'}}">Required!</span>-->
+                                            </ng-form>
+                                        </div>
+                                     
+
+                                        <div ng-if="field.type=='text'&& vm.currentStep>1" class="form-group" style="padding:0px">
+                                            <ng-form name="claimFieldForm">
+                                                <label class="control-label">{{field.label}}:</label>
+                                                <input type="{{field.type}}" name="fieldname" class="form-control" ng-model="field.data"  ng-required="field.required" autocomplete="on">
+                                                <!--placeholder="{{field.label}}-->
+                                                <!--<p class="help-block" ng-show="claimFieldForm.fieldname.$touched && claimFieldForm.fieldname.$valid">Required!</p>-->
+                                                <span class="text-danger" ng-show="claimFieldForm.fieldname.$dirty && claimFieldForm.$error.required">
+                                                    Required!
+                                                </span>
+                                                <!--<span ng-show= "{{'claimForm.'+field.name+'.$d          <!--<span ng-show= "{{'claimForm.'+field.name+'.$dirty && claimForm.'+field.name+'.$error.required'}}">Required!</span>-->
+                                            </ng-form>
+                                        </div>
+
+                                        <!--TextAreas-->
+                                        <div ng-if="field.type=='textarea'" class="form-group" style="padding:0px">
+                                            <ng-form name="claimFieldForm">
+                                                <label class="control-label">{{field.label}}:</label>
+                                                <textarea class="form-control" placeholder="{{field.label}}" name="fieldname" rows="5" ng-model="field.data" ng-required="field.required"></textarea>
+                                                <span class="text-danger" ng-show="claimFieldForm.fieldname.$dirty && claimFieldForm.$error.required">
+                                                    Required!
+                                                </span>
+                                            </ng-form>
+                                        </div>
+
+                                        <!--Select Fields-->
+                                        <div ng-if="field.type=='select'" class="form-group" style="padding:0px">
+                                            <ng-form name="claimFieldForm">
+                                                <label class="control-label">{{field.label}}:</label>
+                                                <select class="form-control" name="fieldname" ng-options="option.name for option in field.options" ng-model="field.data" ng-required="field.required"></select>
+
+                                                <span class="text-danger" ng-show="claimFieldForm.fieldname.$dirty && claimFieldForm.$error.required">
+                                                    Required!
+                                                </span>
+                                            </ng-form>
+                                        </div>
+
+                                    <!--Email Fields-->
+                                        <div ng-if="field.type=='email'&& vm.currentStep==1" class="form-group" style="padding:0px">
+                                            <ng-form name="claimFieldForm">
+                                                <label class="control-label">{{field.label}}:</label>
+                                                <input type="{{field.type}}" class="form-control" ng-model="field.data" ng-init="field.data = userProfileInfo.userEmail"  ng-required="field.required" autocomplete="on">
+
+                                            </ng-form>
+                                        </div>
+
+                                        <div ng-if="field.type=='email'&& vm.currentStep>1" class="form-group" style="padding:0px">
+                                            <ng-form name="claimFieldForm">
+                                                <label class="control-label">{{field.label}}:</label>
+                                                <input type="{{field.type}}" class="form-control" ng-model="field.data" ng-required="field.required" autocomplete="on">
+
+                                            </ng-form>
+                                        </div>
+
+                                            <!--docs-->
+                                            <div ng-if="field.type=='doc'">
+
+
+                                                <div class="row" style="padding:0px">
+                                                    <div class="col-md-4">
+                                                        {{field.label}}
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        {{field.preferredFormat}}
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        {{field.preparationRequired}}
+                                                    </div>
+
+
+                                                </div>
+                                                <hr style="padding:0px; margin:0px; border-color:darkgrey; color:darkgrey; " />
+
+
+                                            </div>
+
+                                        </div><!--ngrepeat fields in this step-->
+
+                                    <div ng-if="vm.currentStep == vm.steps[vm.steps.length-1].step">            <!--"vm.isAtLastStep()"-->
+                                       
+                                        <!--<input type="file" onchange="angular.element(this).scope().filesChanged(this)" multiple/>-->
+                                    <div style="padding-top:10px">
+                                        <input id="filesSelectedInput" type="file" name="file" file-input="files" multiple required/> <!--M: input element bound to a list called filesCurList: custom directive-->
+                                     </div>
+                               
+
+                                        <h3>File selections:</h3>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    
+                                                    <th>Name</th>
+                                                    <th>File Type</th>
+                                                    <th>Size (KiB)</th>
+                                                    <!--<th class="text-right">Actions</th>-->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                               
+                                                <tr ng-repeat="file in files">
+                                                    
+                                                    <td>{{file.name}}</td>
+                                                    <td>{{getFileExt(file.name)}}</td>
+                                                    <td>{{file.size/1024|number:2}}</td>
+
+                                                    <!--<td class="td-actions text-right">
+
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-sm">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </td>-->
+                                                </tr>
+                                               
+                                            </tbody>
+                                        </table>                                    
+
+                                    <div class="row">
+                                        <input type="button" class="btn btn-raised btn-success pull-right" ng-click="upload(files)" value="Upload" ng-disabled="uploading" />
+
+                                        <div class="text-center">
+                                        <md-progress-circular class ="text-center" md-mode="indeterminate" md-diameter="20px" ng-show="uploading" style="margin: 10px 0px 0px 5px; text-align:center"></md-progress-circular>
+                                        </div>
+                                        </div>   
+                                     </div>
+
+                                </form>
+                              </div>
+
+                        <!--<div>{{vm.steps}}</div>-->
+
+                            </div> <!--id="wizard-content-container">-->
+
+                      
+                        <div id="wizard-navigation-container">
+                          
+                            <div class="text-center">
+                               
+                                <span class="btn-group">
+                                    <button ng-disabled="vm.currentStep <= 1" class="btn btn-info btn-raised " name="previous" type="button" ng-click="vm.gotoStep(vm.currentStep - 1)"><i class="fa fa-arrow-left"></i> Previous step</button>
+                                    <button ng-disabled="vm.currentStep >= vm.steps.length" class="btn btn-info btn-raised" name="next" type="button" ng-click="vm.gotoStep(vm.currentStep + 1)">Next step <i class="fa fa-arrow-right"></i></button>
+                                </span>
+                                <div ng-show="vm.currentStep == vm.steps.length" class="text-info">  
+                                    <h5>Click 'Submit Claim' to submit your claim information to us, when you are done.</h5>
+                                    <h6>Note: By clicking 'Submit Claim' you declare that <br/> the particulars being submitted are true in every respect</h6>
+                                 </div>
+                                <button ng-disabled="vm.currentStep != vm.steps.length || saving" class="btn btn-success btn-raised" name="next" type="button" ng-click="vm.save(vm.steps)">Submit Claim</button>
+                                <md-progress-circular md-mode="indeterminate" md-diameter="20px" ng-show="saving" style="margin: 10px 0px 0px 5px;"></md-progress-circular>
+                            </div>
+                        </div>
+
+                    <br/>
+                    <br />
+                       
+                    </div><!--wizard-container-->
+
+                 
+
+
+                    </div> <!--container-->
+                </div>
+            </div> <!--main-->
+     </div> <!--wrapper-->
+</div>

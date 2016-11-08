@@ -1,0 +1,116 @@
+﻿<div ng-controller="addBeneficiaryPageController">
+
+    <div ng-include="'views/shared/navbar/consumerNav.html'"></div>
+
+    <div class="wrapper">
+
+        <div class="header header-filter" style="background: url('../../assets/img/coverUmbrellas.jpg') center center ; background-size:cover">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="brand">
+                            <h1 style="font-family: 'Rock Salt', cursive;color:white; text-align:center; margin-top:10%;">We got you covered</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main main-raised" ng-controller="beneficiariesCtrl">
+            <div class="">
+                <div class="container">
+
+              
+                        <div class="text-center">
+                            <h1 class="text-info">Add a Beneficiary</h1>
+                        </div>
+              
+
+                    <div class="row" style="width:50%; margin:0 auto; padding-top:0">
+                        <div class="card card-nav-tabs" md-whiteframe="14" layout-align="center">
+                            <div class="header-info" style="padding:3%">
+                                <!-- rgba(0, 116, 179, 0.05) -->
+                                <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                                <div class="nav-tabs-navigation" style="text-align:center">
+                                    <div class="nav-tabs-wrapper">
+                                       
+                                        <i class="fa fa-user-plus fa-4x"></i>
+                                        <h3>Add a Beneficiary</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content" style="padding:0px;">
+                                <!--md-whiteframe="9"-->
+                                <div class="tab-content text-center">
+                                    <div class="tab-pane active" id="profile">
+                                        <div class="row">
+                                            <div class="col-md-6 col-md-offset-3">
+                                                <h4>Complete the following details:</h4>
+   
+                                                <md-input-container class="md-icon-float md-block">
+                                                    <!-- Use floating label instead of placeholder -->
+                                                    <label>Username/Email</label>       
+                                                    <input ng-model="consumer.nameOrMail" required type="text" name="consumerUserName" autocomplete="on">
+                                                  
+                                                </md-input-container>
+
+                                                <md-input-container class="md-icon-float md-block">
+                                                    <!-- Use floating label instead of placeholder -->
+                                                    <label>Mobile number</label>
+                                                    <input ng-model="consumer.MobileNum" required type="text" name="consumerUserName" autocomplete="on">
+
+                                                </md-input-container>
+                                       
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <!--<button class="btn btn-success" ng-click="buyBulk(buyBulkForm.amount,buyBulkForm.resellerID)" style="margin-left:15px;">purchase</button>-->
+                                <md-content layout-align="center" id="SubmitBeneficiary-ToastContainer">
+                                    <div layout-align="center" layout="row"  class="inset" paddi>
+                                        <md-button style="background-color:steelblue" class="md-raised md-primary" ng-hide="isLoadingUser" ng-click="getUser(consumer.nameOrMail,consumer.MobileNum,'SubmitBeneficiary-ToastContainer')" >Submit</md-button>
+                                        <md-progress-circular md-mode="indeterminate" md-diameter="20px" ng-show="isLoadingUser" style="margin: 10px 0px 0px 5px;"></md-progress-circular>
+                                    </div>
+                                </md-content>
+                                <br />
+
+
+                                <div ng-show="beneficiaryFound">
+
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <p>User Found:</p>
+                                        <md-list-item class="md-2-line">
+                                            <img src="/assets/img/profile1.png" class="md-avatar" />
+                                            <div class="md-list-item-text">
+                                                <h3>{{beneficiary.userFirstName}} {{beneficiary.userLastName}}</h3>
+                                                <p>{{beneficiary.userContactNumber}}</p>
+                                            </div>
+                                        </md-list-item>
+
+                                        <md-content layout-align="center" id="AddBeneficiary-ToastContainer">
+                                            <div layout-align="center" layout="row" class="inset" paddi>
+                                                <md-button style="background-color:steelblue" class="md-raised md-primary" ng-hide="isLoadingAdd" ng-click="addBeneficiary()"><i class="fa fa-check" aria-hidden="true"></i>Add to my Beneficiaries</md-button>
+                                                <md-progress-circular md-mode="indeterminate" md-diameter="20px" ng-show="isLoadingAdd" style="margin: 10px 0px 0px 5px;"></md-progress-circular>
+                                             </div>
+                                          </md-content>
+                                    </div>
+                                    <br />
+                              
+                                </div>
+                                <br />
+                                
+                            </div>
+                        </div>
+                    </div>
+                 
+                    <br />
+                    <br />
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

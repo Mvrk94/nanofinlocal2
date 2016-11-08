@@ -1,0 +1,128 @@
+﻿<div ng-controller="walletPageController">
+    
+    <div ng-include="'views/shared/navbar/consumerNav.html'"></div>
+
+    <div class="wrapper">
+
+        <div class="header header-filter" style="background: url('../../assets/img/coverUmbrellas.jpg') no-repeat ; background-size:cover">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="brand">
+                            <h1 style="font-family: 'Rock Salt', cursive;color:white; text-align:center; margin-top:10%;">We got you covered</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main main-raised" ng-controller="walletCtrl">
+            <div class="">
+                <div class="container">
+                    
+                    <div class="title" style="padding:0px">
+                        <div class="text-center">
+                            <h1 class="text-info">Your NanoFin Wallet</h1>
+
+                        </div>
+                    </div>
+
+                   <div class ="row" >
+                       <div class="col-md-4">
+                           <img style ="height:250px; width:250px;"src="/assets/img/walletnf.png" />                  
+                       </div>
+
+                       <div class="col-md-4 text-center">
+                           <h3 class="md-display-1 text-info" style="font-family: 'Rock Salt', cursive;">NanoBucks Voucher Balance:</h3>
+
+                           <h2 class="md-display-1 text-success" style="font-family: 'Rock Salt', cursive;">{{currentVoucherBalance | currency:"R":2}} </h2>
+
+                           <div class="row">
+                               
+                               </div>
+                       </div>
+                       <div class="col-md-4 text-center">
+                           <img style="height:250px; width:200px" src="/assets/img/NanoManLooking.png" />
+                       </div>
+                       <!--<div flex ="70">
+                                    <md-card md-theme="" style="background:url(assets/img/nanobucks.png) center no-repeat; background-size:cover">
+                       
+                                        <md-card-title style="text-align:center">
+                            
+                                            <md-card-title-text>
+                                                <span class="md-display-1">NanoBucks Voucher Balance </span>
+                             
+                                                <span class="md-display-2">{{currentVoucherBalance | currency:"R":2}} </span>
+                                            </md-card-title-text>
+                                            <div class="md-media-xl card-media"> <img src="assets/img/v2.png" /></div>-->
+                                            <!--<md-card-title-media>
+                                                <div class="md-media-md card-media" style= "background: url(assets/img/v2.png) center no-repeat"></div>
+                                            </md-card-title-media>-->
+                                        <!--</md-card-title>
+                       
+
+                                            </md-card>
+                       </div>-->
+                    </div>
+
+                    <div class="title" style="padding:0px">
+                        <div class="text-center">
+                            <h1 class="text-info">Active Products:</h1>
+
+                        </div>
+                    </div>
+
+                    <form>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                                <input type="text" class="form-control" placeholder="Search your product" ng-model="searchProduct">
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <table class="table table-bordered table-striped">
+                        <thead >
+                            <tr class="text-center">
+                                <th>Product</th>
+                                <th>Description</th>
+                                <th>Purchase value</th>
+                                <th>Start date</th>
+                                <th>End date</th>
+                                <th>Policy Number</th>
+                                <th>Claim <br>(Once Policy# assigned)</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="i in activeProductItems| filter:searchProduct">
+                                <td style="text-align:center;"><img src="../../assets/img/{{i.productName}}.png" class="img-raised img-circle"> 
+                                    <p>{{i.productName}}<p>
+                                </td>
+                                <td style="width:250px">{{i.productDescription}} Cover Amount: {{i.ipCoverAmount | currency:"R":2}}</td>
+                                <td>{{i.productValue|currency:"R":2}}</td>
+                                <td>{{i.activeProductItemStartDate|date:'yyyy-MM-dd'}}</td>
+                                <td>{{i.activeProductItemEndDate| date:'yyyy-MM-dd h:mm a'}}</td>
+                                <td>#{{determinePolicyNum(i.activeProductItemPolicyNum)}}</td>
+                               
+                                <td style="width:200px" class="text-center">    
+                                    <a href="/claimSimple/{{i.ActiveProductItems_ID}}/{{i.Product_ID}}" ng-hide="noPolicyNumYet" class="btn btn-info btn-raised btn-round"><i class="fa fa-file-text-o fa-2x"></i> <br />Start Claim Process</a>
+                                    <p  ng-show="noPolicyNumYet">Policy Number Required.<br> <b>Contact 2Help1:</b><br><b>0861 243 571 </b> <br> for more info.</p>
+                  <!--button class="btn btn-info btn-raised btn-round" ng-click="$location.path('/purchaseproduct/{{i.productID}}')"><i class="fa fa-shopping-cart fa-2x"></i> <br />Get with NanoBucks</button>-->
+                                </td>   
+                              
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                 </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+

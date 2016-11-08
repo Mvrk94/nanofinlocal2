@@ -1,0 +1,132 @@
+﻿<div ng-controller="resellerPerformancePageController">
+    <div ng-include="'views/shared/navbar/resellernav.html'"></div>
+
+    <div class="profile-page">
+
+        <div class="header header-filter" style="background: url('../../assets/img/jhb.jpg') no-repeat center center; background-size: 100%;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="brand">
+                            <h1 style="font-family: 'Rock Salt', cursive; color:white; text-align:center; margin-top:10%;">
+                                Make money. Do good.
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper" ng-controller="resellerPerformanceController">
+            <div class="main main-raised">
+                <div class="profile-content">
+                    <div class="container">
+
+                        <div id="resellerGraphWrapper">
+                            <h1 style="text-align:center">Your Sales Performance</h1>
+
+
+                            <div id="profitGraph" style="margin:auto; height:auto; width:auto; ">
+                                <style type="text/css">
+                                    canvas {
+                                        display: inline-block;
+                                        vertical-align: baseline;
+                                    }
+
+                                    .chart {
+                                        position: relative;
+                                        overflow: hidden;
+                                        width: 100%;
+                                    }
+
+                                        .chart svg,
+                                        .chart canvas {
+                                            width: 100% !important;
+                                        }
+
+                                    .chart-legend {
+                                        list-style: none;
+                                        margin: 0;
+                                        padding: 0;
+                                    }
+
+                                    @media (max-width: 991px) {
+                                        .chart-legend > li {
+                                            float: left;
+                                            margin-right: 10px;
+                                        }
+                                    }
+
+                                    .full-width-chart {
+                                        margin: -9px;
+                                    }
+                                </style>
+
+                                <h3 style="text-align:center">Your income by month</h3>
+                                <p style="text-align:center">This graph shows the total amount you have sold (revenue) and how much you have earned from your sales (profit) - per month.</p>
+                                <div id="graphsRow1" style="margin-bottom:11em">
+                                    <div style="float: left; width:70%;">
+                                        <div id="profRevGraph" style="height:500px; width:100%; margin:auto;"></div>
+                                    </div>
+
+                                    <div style="overflow: hidden;">
+                                        <div class="tim-row" style="margin-top:13em">
+                                            <h4><u>Summary of your income:</u></h4>
+                                            <p>On average, over the time period selected, you have:</p>
+                                            <ul>
+                                                <li>
+                                                    Sold R{{aveRev}} BulkVoucher.
+                                                </li>
+                                                <li>
+                                                    Made R{{aveProfit}} profit.
+                                                </li>
+                                            </ul>
+                                            Your best selling month is {{bestSellingMonth}}, you sold R{{bestSellingMonthAmount}}!
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+                               
+                                <div class="tim-row">
+                                    <h3 style="text-align:center">Your purchases versus sales</h3>
+                                    <p style="text-align:center">This graph compares the total vouchers you have purchased to the total vouchers you have sold this month</p>
+                                    <div id="boughtVsSold" style="width:100%; "></div>
+                                </div>
+
+                                
+
+                  
+                                <div id="graphsRow2">
+                                    <div style="float: left; width:50%;">
+                                        <h3 style="text-align:center">Average number of sales per month</h3>
+                                        <p style="text-align:center">This graph shows you the average number of units you sell per month. A unit can be considered a separate sale.</p>
+                                        <div id="unitsSoldPerMonth" style="width:100%;"></div>
+                                    </div>
+                                    <!--  -->
+                                    <div style="overflow: hidden;">
+                                        <h3 style="text-align:center">Average amount sold per month</h3>
+                                        <p style="text-align:center">This graph shows you the average value (in Rands) you sell per month</p>
+                                        <br />
+                                        <div id="aveAmountSentPerMonthGraph" style="width:100%;"></div>
+                                    </div>
+                                </div>
+                                <br /><br /><br /><br /><br /><br /><br /><br />
+                            </div>
+
+                        </div>
+
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

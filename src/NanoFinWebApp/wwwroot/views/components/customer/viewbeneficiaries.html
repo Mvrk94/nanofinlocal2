@@ -1,0 +1,69 @@
+﻿<div ng-controller="viewBeneficiariesPageController">
+
+    <div ng-include="'views/shared/navbar/consumerNav.html'"></div>
+
+    <div class="wrapper">
+
+        <div class="header header-filter" style="background: url('../../assets/img/coverUmbrellas.jpg') no-repeat ; background-size:cover">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="brand">
+                            <h1 style="font-family: 'Rock Salt', cursive;color:white; text-align:center; margin-top:10%;">We got you covered</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main main-raised" ng-controller="beneficiariesCtrl">
+            <div class="">
+                <div class="container">
+
+                   
+                        <div class="text-center">
+                            <h1 class="text-info">Your Beneficiaries:</h1>
+
+                        </div>
+            
+
+                        <div class="col-md-6 col-md-offset-3">
+                            <form>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                                        <input type="text" class="form-control" placeholder="Search beneficiaries" ng-model="searchBeneficiary">
+
+                                    </div>
+                                </div>
+                            </form>
+                      
+                            <md-list-item ng-repeat="contact in contacts | filter:searchBeneficiary"  class="md-3-line">
+                                <img alt="{{ contact.userFirstName }}" ng-src="/assets/img/profile1.png" class="md-avatar" />
+                                <div class="md-list-item-text" layout="column">
+                                    <h3>{{contact.userFirstName}} {{contact.userLastName}}</h3>
+                                    <h4>{{contact.userEmail}}</h4>
+                                    <p>{{contact.userContactNumber}}</p>
+                                 </div>
+
+                               
+                                    <md-icon md-svg-icon="assets/img/svg/cross.svg" ng-click="remove(contact.User_ID)" aria-label="Send Email" class="md-secondary md-accent md-hue-1">
+                                        <md-tooltip>
+                                            Remove
+                                        </md-tooltip>
+                                    </md-icon>
+
+                            </md-list-item>
+                            <br />
+                        </div>
+
+                    <br />
+                    <br />
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

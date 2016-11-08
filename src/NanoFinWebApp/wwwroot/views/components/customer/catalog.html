@@ -1,0 +1,555 @@
+﻿<div class = "profile-page" ng-controller="catalogPageController"  >
+    <div  ng-include="'views/shared/navbar/consumerNav.html'"></div>
+
+
+    <div ng-controller="customerCtrl">
+
+        <div class="header header-filter" style="background: url('../../assets/img/coverUmbrellas.jpg') no-repeat ; background-size:contain">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="brand">
+                            <h1 style="font-family: 'Rock Salt', cursive;color:white; text-align:center; margin-top:10%;">We got you covered</h1>
+                                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main main-raised">
+            <div class="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="title">
+                                <div class="text-center">
+                                    <h1 class="text-info">Let's Talk Nano-Insurance...</h1>
+                                  
+                                    <h4 style="padding:1px">Select from our various categories below:</h4>
+
+                                </div>
+                            </div>
+
+                           <div >
+
+                               <div class="tabbedContentContainer">
+                                   <ul class="nav nav-pills nav-pills-info nav-justified">
+                                       <li class="active">
+                                           <a href="" data-toggle="tab" data-target="#asset" >
+                                               <i class="fa fa-home fa-2x"></i>
+
+                                               Asset
+                                           </a>
+                                       </li>
+                                       <li>
+                                           <a a href="" data-toggle="tab" data-target="#travel" ng-click="getCatalogProducts(2)">
+                                               <i class="fa fa-suitcase fa-2x"></i>
+                                               Travel
+                                           </a>
+                                       </li>
+                                       <li>
+                                           <a a href="" data-toggle="tab" data-target="#legal" ng-click="getCatalogProducts(11)">
+                                               <i class="fa fa-gavel fa-2x"></i>
+                                               Legal
+                                           </a>
+                                       </li>
+                                       <li>
+                                           <a a href="" data-toggle="tab" data-target="#medical" ng-click="getCatalogProducts(21)">
+                                               <i class="fa fa-ambulance fa-2x"></i>
+                                               Medical
+                                           </a>
+                                       </li>
+                                       <li>
+                                           <a a href="" data-toggle="tab" data-target="#funeral" ng-click="getCatalogProducts(31)">
+                                               <i class="fa fa-heartbeat fa-2x"></i>
+                                               Funeral
+                                           </a>
+                                       </li>
+                                       <li>
+                                           <a a href="" data-toggle="tab" data-target="#valueAdded" ng-click="getCatalogProducts(41)">
+                                               <i class="fa fa-plus fa-2x"></i>
+                                               Value Added Services
+                                           </a>
+                                       </li>
+                                   </ul>
+
+
+                                   <div class="tab-content text-center">
+                                       <!--<div class="text-center">
+                                           <md-progress-circular md-mode="indeterminate" md-diameter="35px" ng-show="pageLoading" style="margin: 10px 0px 0px 5px;"></md-progress-circular>
+                                       </div>-->
+
+                                       <div class="tab-pane fade in active" id="asset">
+                                           <form>
+                                               <div class="form-group">
+                                                   <div class="input-group">
+                                                       <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                                                       <input type="text" class="form-control" placeholder="Search a product" ng-model="searchProduct">
+
+                                                   </div>
+                                               </div>
+                                           </form>
+                                           <div class="text-center">
+                                               <md-progress-circular md-mode="indeterminate" md-diameter="35px" ng-show="pageLoading" style="margin: 10px 0px 0px 5px;"></md-progress-circular>
+                                           </div>
+                                           <table class="table table-bordered table-striped">
+
+                                               <tbody>
+                                                   <tr ng-repeat="i in assets | orderBy:sortType:sortReverse | filter:searchProduct">
+                                                       <td><img src="../../assets/img/{{i.productName}}.png" class="img-raised img-circle"></td>
+                                                       <td>{{i.productName}}</td>
+                                                       <td>{{i.productDescription}} <br />{{i.coverAmount| currency:"R":2}} Cover <br />  <br />
+                                                       <a href="#" data-toggle="modal" data-target="#detailModal">Provider Details</a>
+                                                       <br />
+                                                           <a target="_blank" href="https://nanofinapifinal.azurewebsites.net/UploadFiles/PolicyDocs/AssetPolicy.pdf"><br />Policy Document</a>
+                                                       </td>
+                                                       <td>
+                                                           {{i.unitCost | currency:"R":2}} {{i.unitType}} <br />
+                                                           <a ng-click="goToPurchaseProduct(i.productID)" class="btn btn-info btn-raised btn-round"><i class="fa fa-shopping-cart fa-2x"></i> <br />Get with NanoBucks</a>
+                                                           <!--<a href="/purchaseproduct/{{i.productID}}" class="btn btn-info btn-raised btn-round"><i class="fa fa-shopping-cart fa-2x"></i> <br />Get with NanoBucks</a>-->
+
+
+                                                           <!--button class="btn btn-info btn-raised btn-round" ng-click="$location.path('/purchaseproduct/{{i.productID}}')"><i class="fa fa-shopping-cart fa-2x"></i> <br />Get with NanoBucks</button>-->
+                                                       </td>
+                                                       <!--<td> <button class="btn btn-info btn-raised btn-round"><i class="fa fa-shopping-cart fa-2x"></i> <br/>Get with NanoBucks</button>
+                            </td>-->
+                                                   </tr>
+                                               </tbody>
+
+                                           </table>
+
+                                       </div>
+
+                                       
+
+                                       <div class="tab-pane fade" id="travel">
+                                           <!--id = 2-->
+
+
+                                           <form>
+                                               <div class="form-group">
+                                                   <div class="input-group">
+                                                       <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                                                       <input type="text" class="form-control" placeholder="Search a product" ng-model="searchProduct">
+
+                                                   </div>
+                                               </div>
+                                           </form>
+                                          
+                                           <table class="table table-bordered table-striped">
+
+                                               <tbody>
+                                                   <tr ng-repeat="i in travels | orderBy:sortType:sortReverse | filter:searchProduct">
+                                                       <td><img src="../../assets/img/{{i.productName}}.png" class="img-raised img-circle"></td>
+                                                       <td>{{i.productName}}</td>
+                                                       <td>{{i.productDescription}} <br />{{i.coverAmount| currency:"R":2}} Cover <br />  <br />
+                                                       <a href="#" data-toggle="modal" data-target="#detailModal">Provider Details</a>
+                                                           <br />
+                                                           <a target="_blank" href="https://nanofinapifinal.azurewebsites.net/UploadFiles/PolicyDocs/TravelPolicy.pdf"><br />Policy Document</a>
+                                                       </td>
+                                                       <td>
+                                                           {{i.unitCost| currency:"R":2}} {{i.unitType}} <br />
+                                                           <a ng-click="goToPurchaseProduct(i.productID)" class="btn btn-info btn-raised btn-round"><i class="fa fa-shopping-cart fa-2x"></i> <br />Get with NanoBucks</a>
+                                                           <!--<a href="/purchaseproduct/{{i.productID}}" class="btn btn-info btn-raised btn-round"><i class="fa fa-shopping-cart fa-2x"></i> <br />Get with NanoBucks</a>-->
+
+                                                       </td>
+                                                   </tr>
+                                               </tbody>
+
+                                           </table>
+
+                                       </div>
+
+                                       <div class="tab-pane fade" id="legal">
+                                           <!--id = 11-->
+
+                                           <form>
+                                               <div class="form-group">
+                                                   <div class="input-group">
+                                                       <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                                                       <input type="text" class="form-control" placeholder="Search a product" ng-model="searchProduct">
+
+                                                   </div>
+                                               </div>
+                                           </form>
+                                         
+                                           <table class="table table-bordered table-striped">
+
+                                               <tbody>
+                                                   <tr ng-repeat="i in legals | orderBy:sortType:sortReverse | filter:searchProduct">
+                                                       <td><img src="../../assets/img/{{i.productName}}.png" class="img-raised img-circle"></td>
+                                                       <td>{{i.productName}}</td>
+                                                       <td>{{i.productDescription}} <br />{{i.coverAmount| currency:"R":2}} Cover <br /> 
+                                                        <br /><a href="#" data-toggle="modal" data-target="#detailModal">Provider Details</a>
+                                                           <br />
+                                                           <a target="_blank" href="https://nanofinapifinal.azurewebsites.net/UploadFiles/PolicyDocs/LegalPolicy.pdf"><br />Policy Document</a>
+                                                       </td>
+                                                       <td>
+                                                           {{i.unitCost| currency:"R":2}} {{i.unitType}} <br />
+                                                           <a ng-click="goToPurchaseProduct(i.productID)" class="btn btn-info btn-raised btn-round"><i class="fa fa-shopping-cart fa-2x"></i> <br />Get with NanoBucks</a>
+                                                           <!--<a href="/purchaseproduct/{{i.productID}}" class="btn btn-info btn-raised btn-round"><i class="fa fa-shopping-cart fa-2x"></i> <br />Get with NanoBucks</a>-->
+                                                       </td>
+                                                   </tr>
+                                               </tbody>
+
+                                           </table>
+                                       </div>
+
+                                       <div class="tab-pane fade" id="medical">
+                                           <!--id = 21-->
+
+                                           <form>
+                                               <div class="form-group">
+                                                   <div class="input-group">
+                                                       <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                                                       <input type="text" class="form-control" placeholder="Search a product" ng-model="searchProduct">
+
+                                                   </div>
+                                               </div>
+                                           </form>
+
+                                           <table class="table table-bordered table-striped">
+
+                                               <tbody>
+                                                   <tr ng-repeat="i in medicals | orderBy:sortType:sortReverse | filter:searchProduct">
+                                                       <td><img src="../../assets/img/{{i.productName}}.png" class="img-raised img-circle"></td>
+                                                       <td>{{i.productName}}</td>
+                                                       <td>{{i.productDescription}} <br />{{i.coverAmount| currency:"R":2}} Cover <br /> 
+                                                        <br /><a href="#" data-toggle="modal" data-target="#detailModal">Provider Details</a>
+                                                           <br />
+                                                           <a target="_blank" href="https://nanofinapifinal.azurewebsites.net/UploadFiles/PolicyDocs/MedicalPolicy.pdf"><br />Policy Document</a>
+                                                       </td>
+                                                       <td>
+                                                           {{i.unitCost| currency:"R":2}} {{i.unitType}} <br />
+                                                           <a ng-click="goToPurchaseProduct(i.productID)" class="btn btn-info btn-raised btn-round"><i class="fa fa-shopping-cart fa-2x"></i> <br />Get with NanoBucks</a>
+                                                           <!--<a href="/purchaseproduct/{{i.productID}}" class="btn btn-info btn-raised btn-round"><i class="fa fa-shopping-cart fa-2x"></i> <br />Get with NanoBucks</a>-->
+                                                       </td>
+                                                   </tr>
+                                               </tbody>
+
+                                           </table>
+                                       </div>
+
+                                       <div class="tab-pane fade" id="funeral">
+                                           <!--id = 31-->
+
+                                           <form>
+                                               <div class="form-group">
+                                                   <div class="input-group">
+                                                       <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                                                       <input type="text" class="form-control" placeholder="Search a product" ng-model="searchProduct">
+
+                                                   </div>
+                                               </div>
+                                           </form>
+
+                                           <table class="table table-bordered table-striped">
+
+                                               <tbody>
+                                                   <tr ng-repeat="i in funerals | orderBy:sortType:sortReverse | filter:searchProduct">
+                                                       <td><img src="../../assets/img/{{i.productName}}.png" class="img-raised img-circle"></td>
+                                                       <td>{{i.productName}}</td>
+                                                       <td>{{i.productDescription}} <br />{{i.coverAmount| currency:"R":2}} Cover <br /> 
+                                                        <br /><a href="#" data-toggle="modal" data-target="#detailModal">Provider Details</a>
+                                                           <br />
+                                                           <a target="_blank" href="https://nanofinapifinal.azurewebsites.net/UploadFiles/PolicyDocs/FuneralPolicy.pdf"><br />Policy Document</a>
+                                                       </td>
+                                                       <td>
+                                                           {{i.unitCost | currency:"R":2}} {{i.unitType}} <br />
+                                                           <a ng-click="goToPurchaseProduct(i.productID)" class="btn btn-info btn-raised btn-round"><i class="fa fa-shopping-cart fa-2x"></i> <br />Get with NanoBucks</a>
+                                                           <!--<a href="/purchaseproduct/{{i.productID}}" class="btn btn-info btn-raised btn-round"><i class="fa fa-shopping-cart fa-2x"></i> <br />Get with NanoBucks</a>-->
+                                                       </td>
+                                                   </tr>
+                                               </tbody>
+
+                                           </table>
+                                       </div>
+
+                                       <div class="tab-pane fade" id="valueAdded">
+                                           <!--id = 41-->
+
+                                           <div">
+                                               <form>
+                                                   <div class="form-group">
+                                                       <div class="input-group">
+                                                           <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                                                           <input type="text" class="form-control" placeholder="Search a product" ng-model="searchProduct">
+
+                                                       </div>
+                                                   </div>
+                                               </form>
+
+                                               <table class="table table-bordered table-striped">
+
+                                                   <tbody>
+                                                       <tr ng-repeat="i in valueaddeds | orderBy:sortType:sortReverse | filter:searchProduct">
+                                                           <td><img src="../../assets/img/{{i.productName}}.png" class="img-raised img-circle"></td>
+                                                           <td>{{i.productName}}</td>
+                                                           <td>{{i.productDescription}} <br /><a href="#" data-toggle="modal" data-target="#detailModal">Provider Details</a>
+                                                               <br />
+                                                               <a target="_blank" href="https://nanofinapifinal.azurewebsites.net/UploadFiles/PolicyDocs/ValueAddedPolicy.pdf"><br />Policy Document</a>
+                                                           </td>
+                                                           <td>
+                                                               {{i.unitCost| currency:"R":2}} {{i.unitType}} <br />
+                                                               <a ng-click="goToPurchaseProduct(i.productID)" class="btn btn-info btn-raised btn-round"><i class="fa fa-shopping-cart fa-2x"></i> <br />Get with NanoBucks</a>
+                                                           </td>
+                                                           <!--<a href="/purchaseproduct/{{i.productID}}" class="btn btn-info btn-raised btn-round"><i class="fa fa-shopping-cart fa-2x"></i> <br />Get with NanoBucks</a></td>-->
+
+                                                       </tr>
+                                                   </tbody>
+
+                                               </table>
+                                       </div>
+                                   </div> <!--tab content-->
+                               </div>
+                               </div><!-- end ng controller End Tabs with icons on Card -->
+                            
+                    </div>
+               
+                        
+                        
+                 </div>
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Provided By: 2HELP1 UnderWriting Managers</h4>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="assets/img/2help1.png" />
+                        <br />
+                        2help1 Underwriting Managers has taken note of the transition from annual insurance policies to monthly insurance policies over the years.Clients will have the choice, on selected life and short term policies to insure for a specific period and pay one amount only. The policy will have a commencement date and a termination date and can be taken out for as little as one day in some cases.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Close</button>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+           <!--Additonal details Modal-->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog" style="width:800px;">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><span style="font-family: 'Montserrat', sans-serif; font-size:25px; color:#2196F3;">Before continuing with your purchase...</span></h4>
+                        
+                        <h4 style="color:#2196f3">Please complete the following Once-Off additional details:</h4>
+                    </div>
+                    <div class="modal-body" style="padding-top:0px;">
+                        <form name="consumerSignUp">
+                            <div class="row">
+                                <h5>
+                                    <span style="font-family: 'Montserrat', sans-serif; font-size:20px; color:#808080">About You</span>
+                                </h5>
+                                <hr style="color:#808080; border-top:2px dotted lightgray;" />
+                            </div>    
+                                                        
+                            <div class="row">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <md-input-container class="md-icon-float md-block">
+                                            <!-- Use floating label instead of placeholder -->
+                                            <label>Address</label>
+                                            <md-icon><i class="fa fa-map-marker"></i></md-icon>
+                                            <input ng-model="consumer.addressline" required type="text" name="addressline">
+                                            <div ng-messages="consumerSignUp.addressline.$error" role="alert">
+                                                <div ng-message="required">Required field</div>
+                                            </div>
+                                        </md-input-container>
+
+                                        <md-input-container class="md-icon-float md-block">
+                                            
+                                            <label>Are you a home owner?</label>
+                                            <br />
+                                            <md-icon><i class="fa fa-home" style="color:black"></i></md-icon>
+                                            <select required ng-model="consumer.homeOwnerType" class="form-control" name="homeOwnerType" style="color:#2196F3">
+                                                <option value="Yes">Yes</option>
+                                                <option value="Renting">Renting</option>
+                                                <option value="Living with parents">Living with parents</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                          
+                                            <div class="errors" ng-messages="consumerSignUp.homeOwnerType.$error">
+                                                <div ng-message="required">Required field</div>
+                                            </div>
+                                        </md-input-container>
+
+                                        <md-input-container class="md-icon-float md-block">
+                                            <!-- Use floating label instead of placeholder -->
+                                            <label>Number of dependants?</label>
+                                            <md-icon><i class="fa fa-users"></i></md-icon>
+                                            <input type="number" max="12" min="0" ng-model="consumer.numberDependants" required name="numberDependants">
+                                            <div ng-messages="consumerSignUp.numberDependants.$error" role="alert">
+                                                <div ng-message="required">Required field</div>
+                                                <div ng-message="max">The maximum number allowed here is 12</div>
+                                                <div ng-message="min">The minimum number allowed here is 0</div>
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+
+                            <div class="row">
+                                <h5>
+                                    <span style="font-family: 'Montserrat', sans-serif; font-size:20px; color:#808080">Your Product Interests</span>
+                                </h5>
+                                <hr style="color:#808080; border-top:2px dotted lightgray;" />
+                            </div>  
+                          <div class="row">
+                              <div class="col-md-10 col-md-offset-1">
+                                  <fieldset class="standard">
+                                      <legend>Select the insurance products you may be interested in:</legend>
+                                      <div class="row">
+                                          <div class="col-md-6" ng-repeat="item in items">
+                                              <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+                                                  {{ item.name }} 
+                                              </md-checkbox>
+
+                                              <!--original:-->
+                                              <!--<md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+                                                  {{ item.name }} <span ng-if="exists(item, selected)">selected</span>
+                                              </md-checkbox>-->
+                                          </div>
+                                      </div>
+
+                                  </fieldset>
+                              </div>
+                          </div>
+
+                            <!--Just for testing selected items-->
+                            <!--<div>
+                                <h2 class="md-title">Selected Items</h2>
+                                <code style="display: block; padding: 8px;">{{selected}}</code>
+                                <p>{{getSelectedFormat(selected)}}</p>
+                                <p>{{newSelectedItemsFormatted}}</p>
+                            </div>-->
+                            
+
+                            <div class="row">
+                                <h5>
+                                    <span style="font-family: 'Montserrat', sans-serif; font-size:20px; color:#808080">About Your Affordability</span>
+                                </h5>
+                                <hr style="color:#808080; border-top:2px dotted lightgray;" />
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <md-input-container class="md-icon-float md-block">
+                                        <!-- Use floating label instead of placeholder -->
+                                        <label>Gross Monthly Income (Total)</label>
+                                        <md-icon><i class="fa fa-money"></i></md-icon>
+                                        <input type="number" min="0.00" ng-model="consumer.grossMonthlyIncome" required name="grossMonthlyIncome">
+                                        <div ng-messages="consumerSignUp.grossMonthlyIncome.$error" role="alert">
+                                            <div ng-message="required">Required field</div>
+                                            <div ng-message="min">The minimum amount allowed here is R0.00</div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container class="md-icon-float md-block">
+                                        <!-- Use floating label instead of placeholder -->
+                                        <label>Nett Monthly Income (Take Home)</label>
+                                        <md-icon><i class="fa fa-credit-card-alt"></i></md-icon>
+                                        <input type="number" min="0.00" ng-model="consumer.nettMonthlyIncome" required name="nettMonthlyIncome">
+                                        <div ng-messages="consumerSignUp.nettMonthlyIncome.$error" role="alert">
+                                            <div ng-message="required">Required field</div>
+                                            <div ng-message="min">The minimum amount allowed here is R0.00</div>
+                                        </div>
+                                    </md-input-container>
+
+
+                                    <md-input-container class="md-icon-float md-block">
+                                        <!-- Use floating label instead of placeholder -->
+                                        <label>Total Monthly Expenses</label>
+                                        <md-icon><i class="fa fa-credit-card"></i></md-icon>
+                                        <input type="number" min="0.00" ng-model="consumer.totalMonthlyExpenses" required name="totalMonthlyExpenses">
+                                        <div ng-messages="consumerSignUp.totalMonthlyExpenses.$error" role="alert">
+                                            <div ng-message="required">Required field</div>
+                                            <div ng-message="min">The minimum amount allowed here is R0.00</div>
+                                        </div>
+                                    </md-input-container>
+                                    </div>
+                                </div>
+
+                        </form>
+            
+                    </div>
+                    <div class="modal-footer">
+                        <div class="text-center">
+                            <md-progress-circular class="text-center" md-mode="indeterminate" md-diameter="20px" ng-show="isLoadingSave" style="margin: 10px 0px 0px 5px; text-align:center"></md-progress-circular>
+                        </div>
+                        <button ng-disabled="isFormNotCompletedYet||isLoadingSave" ng-click="SaveAdditonalDetails()" type="button" class="btn btn-success btn-raised btn-round">Submit</button>
+                        <button ng-click="laterClicked()" type="button" class="btn btn-danger btn-raised btn-round">Later</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+            <!--AlertModal-->
+            <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <!--<h4 class="modal-title" id="myModalLabel">Thank You! Your additional details have been captured.</h4>-->
+                            <h4 class="modal-title"><span style="font-family: 'Montserrat', sans-serif; font-size:25px; color:#2196F3;"><i class="fa fa-thumbs-up"></i>Thank You! Your additional details have been captured.</span></h4>
+
+                          
+
+                        </div>
+                        <div class="modal-body">
+                            <h4 style="color:#2196f3">Click OK to continue browsing our catalog.</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">OK</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!--AlertModal-->
+        <div class="modal fade" id="alertLaterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h5 class="modal-title"><span style="font-family: 'Montserrat', sans-serif; font-size:18px; color:#2196F3;"><i class="fa fa-exclamation-circle"></i>You have chosen to complete the details later</span></h5>
+                       
+                    </div>
+                    <div class="modal-body">
+                        <h5 style="color:#2196f3">You may continue with the purchase of the previously selected product.</h5>
+                       
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">OK</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--last 2-->
+    </div>
+</div>
+

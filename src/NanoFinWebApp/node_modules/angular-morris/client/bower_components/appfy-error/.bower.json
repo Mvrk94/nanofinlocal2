@@ -1,0 +1,23 @@
+{
+  "name": "appfy-error",
+  "description": "Appfy based module to display pages like 401, 404 and 500",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Appfy/appfy-error"
+  },
+  "main": [
+    "appfy-error.min.js",
+    "appfy-error.min.css"
+  ],
+  "homepage": "https://github.com/Appfy/appfy-error",
+  "_release": "c0e2ab83ca",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "c0e2ab83ca3cc53b6ab49ad437f3168aef265899"
+  },
+  "_source": "https://github.com/Appfy/appfy-error.git",
+  "_target": "*",
+  "_originalSource": "appfy-error"
+}

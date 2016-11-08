@@ -1,0 +1,107 @@
+﻿<div ng-controller="sendvoucherPageController">
+
+    <div ng-include="'views/shared/navbar/consumerNav.html'"></div>
+
+    <div class="wrapper">
+
+        <div class="header header-filter" style="background: url('../../assets/img/coverUmbrellas.jpg') no-repeat ; background-size:cover">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="brand">
+                            <h1 style="font-family: 'Rock Salt', cursive;color:white; text-align:center; margin-top:10%;">We got you covered</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main main-raised" ng-controller="sendvoucherCtrl as ctrl">
+            <div class="">
+                <div class="container">
+                  
+                        <div class="text-center">
+                            <h1 class="text-info">Send some NanoBucks Vouchers to your friends</h1>
+
+                            <h3 style="padding:1px">You currently have {{currentVoucherBalance|currency:"R":2}} Nanobucks available</h3>
+
+                        </div>
+              
+
+                    <div class="row" style="width:50%; margin:0 auto; padding-top:0">
+                        <div class="card card-nav-tabs" md-whiteframe="14" layout-align ="center" >
+                            <div class="header-info" style="padding:3%">
+                                <!-- rgba(0, 116, 179, 0.05) -->
+                                <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                                <div class="nav-tabs-navigation" style="text-align:center">
+                                    <div class="nav-tabs-wrapper">
+                                        <i class="fa fa-share-square fa-4x"></i>
+                                        <h3>Send NanoBucks Voucher</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="content" style="padding:0px;">-->
+                                <!--md-whiteframe="9"-->
+                                <!--<div class="tab-content text-center">-->
+                                    <!--<div class="tab-pane active" id="profile">-->
+                                        <div class="row text-center">
+                                            <div class="col-md-8 col-md-offset-2">
+                                                <h4>Complete the send details:</h4>
+                                                <div class="form-group">
+                                                    <input type="number"
+                                                           placeholder="Amount to send" class="form-control"
+                                                           id="txtSendAmount"
+                                                           ng-model="sendForm.amount" required />
+                                                </div>
+                                              <br />
+                                                <!--<div class="form-group">
+                                                    <input type="text" value="" placeholder="Send To UserName/cell phone/Email"
+                                                           class="form-control" id="txtSendTo_userDetails"
+                                                           ng-model="sendForm.recipientDetails" required />
+                                                </div>-->
+                                                <md-autocomplete ng-disabled="ctrl.isDisabled"
+                                                                 md-no-cache="ctrl.noCache"
+                                                                 md-selected-item="ctrl.selectedItem"
+                                                                 md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                                                                 md-search-text="ctrl.searchText"
+                                                                 md-selected-item-change="ctrl.selectedItemChange(item)"
+                                                                 md-items="item in contacts | filter:ctrl.searchText"
+                                                                 md-item-text="item.userFirstName"
+                                                                 md-min-length="0"
+                                                                 placeholder="Select a beneficiary">
+                                                    <md-item-template>
+                                                        <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.userFirstName}} {{item.userLastName}}</span>
+                                                    </md-item-template>
+                                                    <md-not-found>
+                                                        No match for "{{ctrl.searchText}}"found.
+                                                        <a href="/addbeneficiary">Create a new beneficiary</a>
+                                                    </md-not-found>
+                                                </md-autocomplete>
+                                            
+                                            </div>
+                                        </div>
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <br />
+                                <hr class="header-info" style="border:1px; width:100%; margin:5px 0px 5px 0px;" />
+                                <!--<button class="btn btn-success" ng-click="buyBulk(buyBulkForm.amount,buyBulkForm.resellerID)" style="margin-left:15px;">purchase</button>-->
+                                <md-content layout-align ="center" id="sendVoucher-ToastContainer">
+                                    <div layout-align="center" layout="row" class="inset" paddi>
+                                        <md-button class="md-primary md-hue-1" ng-hide="isLoading" ng-click="sendVoucher(sendForm.amount,  ctrl.selectedItem.User_ID, 'sendVoucher-ToastContainer')" style="margin-left:15px;">Send</md-button>
+                                        <md-progress-circular md-mode="indeterminate" md-diameter="20px" ng-show="isLoading" style="margin: 10px 0px 0px 5px;"></md-progress-circular>
+                                    </div>
+                                </md-content>
+                            <!--</div>-->
+                        </div>
+                    </div>
+
+                    <br/>
+                    <br/>
+
+            </div>
+           </div>
+        </div>
+
+                </div>
+
+            </div>

@@ -1,0 +1,253 @@
+﻿<div ng-controller="purchasePageController">
+
+    <div ng-include="'views/shared/navbar/consumerNav.html'"></div>
+
+    <div class="wrapper" ng-controller="purchaseprodCtrl">
+
+        <div class="header header-filter" style="background: url('../../assets/img/coverUmbrellas.jpg') no-repeat ; background-size:cover">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="brand">
+                            <h1 style="font-family: 'Rock Salt', cursive;color:white; text-align:center; margin-top:10%;">We got you covered</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main main-raised">
+            <div class="">
+                <div class="container">
+                    <div class="row">
+                        <div class="title" style="padding:0px">
+                            <div class="text-center">
+                                <h1 class="text-info">Get Cover with your Nanobucks</h1>
+
+                                <h3 style="padding:1px">You currently have {{currentVoucherBalance|currency:"R":2}} Nanobucks before purchase</h3>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4" style="width:30%;  display: inline-block">
+                                <div class="card card-nav-tabs" style="height:643px;" md-whiteframe="14">
+                                    <div class="header-info" style="padding:3%; background: linear-gradient(60deg, #0288d1, #29b6f6);">
+                                        <!-- rgba(0, 116, 179, 0.05) -->
+                                        <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                                        <div class="nav-tabs-navigation">
+                                            <div class="nav-tabs-wrapper" style="text-align:center">
+                                                <img src="../../assets/img/{{productDetails.productName}}.png" class="img-raised img-circle" />
+                                                <h3>{{productDetails.productName}} Summary:</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content" style="padding:0px;">
+                                        <!--md-whiteframe="9"-->
+                                        <div class="tab-content text-center">
+                                            <div class="tab-pane active" id="profile">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-md-offset-1">
+                                                        <h3></h3>
+                                                        <!--<p>{{productDetails.productDescription}}</p>-->
+
+                                                        <h5 class="info-title"><b>Cover Amount:</b></h5>
+                                                        <h3></h3>
+                                                        <i style="color:lightsteelblue" class="fa fa-umbrella fa-3x"></i>
+                                                        <h5>{{productDetails.coverAmount| currency:"R":2}}</h5>
+                                                        <br />
+                                                        <h5><b>Charge:</b></h5>
+                                                        <h3></h3>
+                                                        <i style="color:lightsteelblue" class="fa fa-money fa-3x"></i>
+                                                        <h5>{{productDetails.unitCost| currency:"R":2}}</h5>
+                                                        <h5>{{productDetails.unitType}}</h5>
+                                                        <br />
+                                                        <br />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--<button class="btn btn-success" ng-click="buyBulk(buyBulkForm.amount,buyBulkForm.resellerID)" style="margin-left:15px;">purchase</button>-->
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8" style="width:70%;float:right; display: inline-block">
+                                <div class="card card-nav-tabs" md-whiteframe="14">
+                                    <div class="header-info" style="padding:3%">
+                                        <!-- rgba(0, 116, 179, 0.05) -->
+                                        <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                                        <div class="nav-tabs-navigation" style="text-align:center">
+                                            <div class="nav-tabs-wrapper">
+                                                <i class="fa fa-money fa-4x"></i>
+                                                <h2>Product Purchase Specifications:</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content" style="padding:0px;">
+                                        <!--md-whiteframe="9"-->
+                                        <div class="tab-content text-center">
+                                            <div class="tab-pane active" id="profile">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-md-offset-1">
+                                                        <h4>Complete the following details for your {{productDetails.productName}} purchase:</h4>
+                                                        <div class="form-group">
+
+                                                            <h4>Select the number of Units (charged {{productDetails.unitType}}) </h4>
+                                                            <!--<input type="number" name="numUnits" ng-model="mNumUnits"
+                                                                   placeholder="Number of Units" class="form-control"
+                                                                   id="txtPurchaseNumUnits" min="{{productDetails.minUnits}}"
+                                                                   required  />-->
+                                                            <form name="UnitForm">
+                                                                <md-input-container style="width:500px">
+                                                                    <label>Number of Units (charged {{productDetails.unitType}})</label>
+                                                                    <input max="{{currentVoucherBalance/productDetails.unitCost}}" min="0" required name="numUnits" type="number" ng-model="mNumUnits">
+                                                                    <div ng-messages="UnitForm.numUnits.$error">
+                                                                        <div ng-message="required">This is required.</div>
+                                                                        <div ng-message="max">Your limit has been exceeded</div>
+                                                                        <div ng-message="max">You need to purchase at least 1 unit</div>
+                                                                    </div>
+                                                                </md-input-container>
+                                                            </form>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <h4>Select a start date for your product:</h4>
+
+                                                            <input type="date" ng-model="myDate" />
+
+                                                            <!--<input class="datepicker form-control" type="date" value = "Select date" ng-model="myDate">-->
+                                                            <!--<md-datepicker ng-model="myDate" md-placeholder="Enter date"
+                                            type="date"></md-datepicker>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="header-info" style="border:1px; width:100%; margin:5px 0px 5px 0px;" />
+                                        <!--<button class="btn btn-success" ng-click="buyBulk(buyBulkForm.amount,buyBulkForm.resellerID)" style="margin-left:15px;">purchase</button>-->
+
+                                        <md-content layout-align="center" id="purchaseProduct-ToastContainer">
+                                            <div class="text-center" ng-show="mNumUnits != null" ng-hide="purchased">
+                                                <div></div>
+                                                <p>Amount Charged: <span>{{calcuateTotalAmountSpent(productDetails.unitCost,mNumUnits)|currency:"R":2}}</span>
+
+                                                <p>NanoBucks after purchase: {{currentVoucherBalance - (productDetails.unitCost * mNumUnits)| currency:"R":2}}</p>
+                                                <!--<p>{{totalAmount}}<p>-->
+                                                <!--<p>{{productDetails.productName}}<p>-->
+                                                
+
+                                            </div>
+
+                                            <div layout-align="center" layout="row" class="inset" paddi>
+                                                <md-button class="md-primary md-hue-1" layout-align="center" ng-disabled="Accepted" ng-hide="isLoading" ng-click="viewModal()" style="margin-left:15px;">Accept Purchase Terms</md-button>
+                                               
+                                               
+                                                <md-progress-circular md-mode="indeterminate" md-diameter="20px" ng-show="isLoading" style="margin: 10px 0px 0px 5px; text-align:center"></md-progress-circular>
+                                            </div>
+                                            <div layout-align="center" layout="row" class="inset" paddi>
+                                                <md-button class="md-primary md-hue-1" layout-align="center" ng-hide="isLoading||!Accepted" ng-click="redeemProduct(mNumUnits,'purchaseProduct-ToastContainer',totalAmount, productDetails.productName)" style="margin-left:15px;">Purchase Product</md-button>
+                                            </div>
+                                        </md-content>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+               
+               </div>
+                  
+                </div>
+            <br />
+            <br />
+                </div>
+
+
+        <!--Additonal details Modal-->
+        <div class="modal fade" id="redeemModal" role="dialog">
+            <div class="modal-dialog" style="width:800px;">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><span style="font-family: 'Montserrat', sans-serif; font-size:25px; color:#2196F3;">{{productDetails.productName}} Terms and Conditions Statement</span></h4>
+
+                      
+                    </div>
+                    <div class="modal-body" style="padding-top:0px;">
+                        <form name="consumerSignUp">
+                            <div class="row">
+                                <h5>
+                                    <span style="font-family: 'Montserrat', sans-serif; font-size:20px; color:#808080">Purchase Agreement</span>
+                                </h5>
+                                <hr style="color:#808080; border-top:2px dotted lightgray;" />
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <h5>By accepting this purchase you confirm that you are able to submit the following (should it be requested from you):</h5>
+                                    <ul>
+                                        <li>
+                                            Certified Copy of ID Document or valid Passport
+                                        </li>
+                                        <li>
+                                            Proof of Residential Address
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <h5>
+                                    <span style="font-family: 'Montserrat', sans-serif; font-size:20px; color:#808080">Accept Agreement</span>
+                                </h5>
+                                <hr style="color:#808080; border-top:2px dotted lightgray;" />
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <fieldset class="standard">
+                                       
+                                        <div class="row">
+                                            <div >
+                                                <a target="_blank" href="https://nanofinapifinal.azurewebsites.net/UploadFiles/TandC/Terms.pdf" ><br />Terms and Conditions</a>
+                                                <md-checkbox ng-model="checkBoxChecked">
+                                                    I confirm my ability to submit the items listed above AND agree to the Terms and Conditions for this purchase.
+                                                </md-checkbox>
+                                               
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                   
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <div class="text-center">
+                            <md-progress-circular class="text-center" md-mode="indeterminate" md-diameter="20px" ng-show="isLoadingSave" style="margin: 10px 0px 0px 5px; text-align:center"></md-progress-circular>
+                        </div>
+                        <button ng-disabled="!checkBoxChecked" ng-click="AcceptConditions()" type="button" class="btn btn-success btn-raised btn-round">Accept</button>
+                        <button ng-click="" type="button" class="btn btn-danger btn-raised btn-round" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+       
+        </div>
+</div>
+
+          

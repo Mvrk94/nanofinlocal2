@@ -1,0 +1,19 @@
+{
+  "name": "appkit-docs",
+  "version": "0.0.1",
+  "author": "Stewan Pacheco <talk@stpa.co>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.12.4",
+    "compression": "^1.4.4",
+    "express": "^4.12.4"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "gulp test"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}

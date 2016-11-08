@@ -1,0 +1,312 @@
+﻿<div class="signup-page"  ng-controller="consumerSignUpPageController">
+    <div ng-include="'views/shared/navbar/generalNav.html'"></div>
+    <div id="ConsumerSignUpBody" ng-controller="consumerSignUpCtrl">
+
+        <div class="wrapper">
+            <div class="header header-filter" style="background-image: url('../assets/img/clouds.jpg'); background-size: cover; background-position: center center;">
+                <div class="container">
+
+
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="brand">
+                                <h3 style="font-family: 'Rock Salt', cursive; color:white; text-align:center; z-index: 100; position:absolute; width:95%; margin-top:100px;">signup with NanoFin</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+
+                            <div class="card card-signup" ng-cloak><!--card-->
+
+                                <style type="text/css" scoped>
+                                   .inputdemoErrors .inputErrorsApp {
+                                        min-height: 48px; }
+                                             
+                                   .inputdemoErrors md-input-container > p {
+                                        font-size: 0.8em;
+                                        text-align: left;
+                                        width: 100%; 
+                                   }
+                                </style>
+
+                                <form name="consumerSignUp">
+
+                                   <div class="content" > <!--card content-->
+                                       <md-content style="overflow:hidden;"> <!--layout-padding-->
+
+                                       <!-- heading for each step and for the page progress bar -->
+                                               <div ng-show="show1" style="padding-top:15px">
+                                                   <span style="font-family: 'Montserrat', sans-serif; font-size:16px; color:#2196F3; margin-left:130px;">Account</span>
+                                                   <md-input-container class="md-icon-float md-block">
+                                                       <!-- Use floating label instead of placeholder -->
+                                                       <label>Username</label>
+                                                       <md-icon><i class="material-icons">face</i></md-icon>
+                                                       <input ng-model="consumer.username" required type="text" name="consumerUserName" ng-change="setForm(consumerSignUp)">
+                                                       <div ng-messages="consumerSignUp.consumerUserName.$error" role="alert">
+                                                           <div ng-message="usernameTaken">This username already exists</div>
+                                                           <div ng-message="required">Required field</div>
+                                                       </div>
+                                                   </md-input-container>
+
+
+                                                   <md-input-container class="md-icon-float md-block">
+                                                       <label>Email</label>
+                                                       <md-icon><i class="material-icons">email</i></md-icon>
+                                                       <input  md-maxlength="50" required type="email" name="consumerEmail" ng-model="consumer.email" minlength="15" maxlength="50" ng-pattern="/^.+@.+\..+$/" />
+
+                                                       <div ng-messages="consumerSignUp.consumerEmail.$error" role="alert">
+                                                           <div ng-message-exp="['required', 'minlength', 'pattern']">
+                                                               Your email is required and should look like: nanofin@gmail.com. 15 characters minimum.
+                                                           </div>
+                                                       </div>
+                                                   </md-input-container>
+
+
+                                                   <md-input-container class="md-icon-float md-block">
+                                                       <label>Password</label>
+                                                       <md-icon><i class="material-icons">vpn_key</i></md-icon>
+                                                       <input ng-model="consumer.password"  required type="password" name="consumerPassword" minlength="6">  <!--ng-change-->
+                                                       <div ng-messages="consumerSignUp.consumerPassword.$error">
+                                                           <div ng-message="required">Required field</div>
+                                                           <div ng-message="minlength">Your password should be at least 6 characters long</div>
+                                                       </div>
+                                                   </md-input-container>
+
+
+                                                   <md-input-container class="md-icon-float md-block">
+                                                       <label>Retype Password</label>
+                                                       <md-icon><i class="material-icons">vpn_key</i></md-icon>
+                                                       <input ng-model="consumer.retypePassword" required type="password" name="consumerRetypePassword"  ng-pattern="consumer.password">
+                                                       <div ng-messages="consumerSignUp.consumerRetypePassword.$error">
+                                                           <div ng-message="required">Required field</div>
+                                                           <div ng-message="pattern">Passwords do not match</div>
+                                                       </div>
+                                                   </md-input-container>
+
+                                                   
+                                                   
+
+                                                  
+                                               </div>
+
+                                               <div ng-show="show2" style="padding-top:15px">
+                                                   <span style="font-family: 'Montserrat', sans-serif; font-size:16px; color:#2196F3; margin-left:130px;">Profile</span>
+                                                   <md-input-container class="md-icon-float md-block">
+                                                       <label>First Name</label>
+                                                       <md-icon><i class="material-icons">account_circle</i></md-icon>
+                                                       <input required name="consumerFirstName" ng-model="consumer.firstName">
+                                                       <div ng-messages="consumerSignUp.consumerFirstName.$error">
+                                                           <div ng-message="required">Required field</div>
+                                                       </div>
+                                                   </md-input-container>
+
+                                                   <md-input-container class="md-icon-float md-block">
+                                                       <label>Surname</label>
+                                                       <md-icon><i class="material-icons">account_circle</i></md-icon>
+                                                       <input required name="consumerLasttName" ng-model="consumer.lastName">
+                                                       <div ng-messages="consumerSignUp.consumerLasttName.$error">
+                                                           <div ng-message="required">Required field</div>
+                                                       </div>
+                                                   </md-input-container>
+
+
+                                                   <md-input-container class="md-icon-float md-block" >
+                                                       <label>Phone Number</label>
+                                                       <md-icon><i class="material-icons">phone</i></md-icon>
+                                                       <input required name="phoneNumber" ng-model="consumer.phoneNumber" maxlength="12" ng-pattern="/^((?:\+27|27)|0)(=72|82|73|83|74|84)(\d{7})$/" />
+
+                                                       <div class="hint" ng-show="showHints">example: 0831234567</div>
+
+                                                       <div ng-messages="consumerSignUp.phoneNumber.$error" ng-hide="showHints">
+                                                           <div ng-message="pattern">(###) ###-#### - Please enter a valid phone number.</div>
+                                                       </div>
+                                                   </md-input-container>
+
+                                                   <h3 style="font-family: 'Montserrat', sans-serif; font-size:14px; color:black; margin:0">Date of birth. Example: 1990-01-01</h3>
+                                                   <md-input-container class="md-icon-float md-block">
+                                                       <label>Date of birth</label>
+                                                       <md-icon><i class="material-icons">cake</i></md-icon>
+                                                       <input required name="dateofbirth" ng-model="consumer.DOB" maxlength="10" ng-pattern="/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/" />
+                                                       <div ng-messages="consumerSignUp.dateofbirth.$error">
+                                                           <div ng-message="required">Required field</div>
+                                                           <div ng-message="pattern">Please date in the format: "YYYY-MM-DD". Use "-" to separate year, month and day.</div>
+                                                       </div>
+                                                   </md-input-container>
+
+                                                   <!--<div id="datePicker">
+                                                       <span style="font-family: 'Montserrat', sans-serif; font-size:10px; color:black;">Enter your date of birth. Example: month/day/year</span>
+                                                       <br />
+                                                       <label>Date of birth</label>
+                                                       <md-datepicker name="consumerDateOfBirth" ng-model="consumer.DOB" md-placeholder="YYYY/MM/DD" required></md-datepicker>
+
+                                                       <div  ng-messages="consumerSignUp.consumerDateOfBirth.$error">
+                                                           <div ng-message="required">Required field</div>
+                                                       </div>
+                                                   </div>-->
+
+
+
+                                                   </div>
+
+                                               <div ng-show="show3" style="padding-top:15px">
+                                                  <span style="font-family: 'Montserrat', sans-serif; font-size:16px; color:#2196F3; margin-left:130px;">Personal</span>
+
+                                                   <md-input-container class="md-icon-float md-block">
+                                                       <label>Gender</label>
+                                                       <md-icon><i class="material-icons">wc</i></md-icon>
+                                                       <md-select name="consumerGender" ng-model="consumer.gender" required>
+                                                           <md-option value="Male">male</md-option>
+                                                           <md-option value="Female">female</md-option>
+                                                       </md-select>
+
+                                                       <div class="errors" ng-messages="consumerSignUp.consumerGender.$error">
+                                                           <div ng-message="required">Required field</div>
+                                                       </div>
+                                                   </md-input-container>
+
+
+                                                   <md-input-container class="md-icon-float md-block">
+                                                       <label>Marital status</label>
+                                                       <md-icon><i class="material-icons">group</i></md-icon>
+                                                       <md-select name="consumerMaritalStatus" ng-model="consumer.maritalStatus" required>
+                                                           <md-option value="Single">single</md-option>
+                                                           <md-option value="Married">married</md-option>
+                                                       </md-select>
+
+                                                       <div class="errors" ng-messages="consumerSignUp.consumerMaritalStatus.$error">
+                                                           <div ng-message="required">Required field</div>
+                                                       </div>
+                                                   </md-input-container>
+
+
+                                                   <md-input-container class="md-icon-float md-block">
+                                                       <label>Employment</label>
+                                                       <md-icon><i class="material-icons">create</i></md-icon>
+                                                       <md-select name="consumerEmploymentStatus" ng-model="consumer.employmentStatus" required>
+                                                           <md-option value="Employed">employed</md-option>
+                                                           <md-option value="Unemployed">unemployed</md-option>
+                                                       </md-select>
+
+                                                       <div class="errors" ng-messages="consumerSignUp.consumerEmploymentStatus.$error">
+                                                           <div ng-message="required">Required field</div>
+                                                       </div>
+                                                   </md-input-container>
+
+                                                   <md-input-container class="md-icon-float md-block">
+                                                       <label>Identification Number</label>
+                                                       <md-icon><i class="material-icons">portrait</i></md-icon>
+                                                       <input ng-model="consumer.ID" required type="text" minlength="13" maxlength="13" name="consumerIdentification" ng-pattern="/^[0-9]{13}$/">
+                                                       <div ng-messages="consumerSignUp.consumerIdentification.$error">
+                                                           <div ng-message="required">Required field</div>
+                                                           <div ng-message="pattern">Enter your ID number - digits only</div>
+                                                           <div ng-message="minlength">Too few digits</div>
+                                                       </div>
+                                                   </md-input-container>
+                                                       
+                                               </div>
+
+                                               <div ng-show="show4" style="padding-top:15px">
+                                                   <span style="font-family: 'Montserrat', sans-serif; font-size:16px; color:#2196F3; margin-left:130px;">Upload</span>
+                                                   <h5 style="font-family: 'Montserrat', sans-serif; font-size:13px; color:black; ">Please upload your ID document</h5>
+
+                                                   <div style="padding-top:10px">
+                                                       <input id="filesSelectedInput" type="file" name="file" file-input="files" multiple required /> <!--M: input element bound to a list called filesCurList: custom directive-->
+                                                   </div>
+
+
+                                                   <h3>Selected files:</h3>
+                                                   <table class="table">
+                                                       <thead>
+                                                           <tr>
+
+                                                               <th>Name</th>
+                                                               <th>File Type</th>
+                                                               <th>Size (KiB)</th>
+                                                               <!--<th class="text-right">Actions</th>-->
+                                                           </tr>
+                                                       </thead>
+                                                       <tbody>
+
+                                                           <tr ng-repeat="file in files">
+
+                                                               <td>{{file.name}}</td>
+                                                               <td>{{getFileExt(file.name)}}</td>
+                                                               <td>{{file.size/1024|number:2}}</td>
+                                                           </tr>
+
+                                                       </tbody>
+                                                   </table>
+
+                                                   <input type="button" class="btn btn-raised btn-success  pull-left" style="margin-left:10px" ng-click="upload(files)" value="Upload" ng-disabled="uploading" />
+
+                                                   <div class="text-center">
+                                                       <md-progress-circular class="text-center" md-mode="indeterminate" md-diameter="20px" ng-show="uploading" style="margin: 10px 0px 0px 5px; text-align:center"></md-progress-circular>
+                                                   </div>
+                                                   <div class="row">
+                                                       
+                                                   </div>
+
+                                               </div>  <!--step four--> 
+                                           
+
+                                        </md-content>
+                                    </div> <!--card content-->
+
+                                    <div class="footer text-center">  <!--footer--> 
+
+                                        <div id="signupPagination" ng-show="showPagination" style="margin-bottom:10px">
+                                            <md-button class="md-fab" style="background-color:#4CD964;" aria-label="Back Button" ng-disabled="currentStep == 0" ng-click="decrementStep()" >
+                                                <md-icon><i class="material-icons">arrow_back</i></md-icon>
+                                            </md-button>
+
+                                            <span style="font-family: 'Montserrat', sans-serif; font-size:16px; color:#2196F3;">Step {{currentStep + 1}} of {{ numSteps }}</span>
+
+                                            <md-button class="md-fab" style="background-color:#4CD964" aria-label="Forward Button" ng-disabled="!showPagination" ng-click="incrementStep(consumerSignUp)">
+                                                <md-icon><i class="material-icons">arrow_forward</i></md-icon>
+                                            </md-button>
+                                        </div>
+
+                                        <div id="formIncompleteBackButton" class="pull-left" ng-show="showIncompleteBack" > <!--style="margin-bottom:10px"-->
+                                            <md-button class="md-fab" aria-label="incompleteFormBackButton" style="background-color:#F44336" ng-click="decrementStep()">
+                                                <md-tooltip md-direction="right">
+                                                    Signup incomplete. Please go back and complete.
+                                                </md-tooltip>
+                                                <md-icon><i class="material-icons">arrow_back</i></md-icon>
+                                            </md-button>
+                                        </div>
+                                        
+
+                                        <md-fab-toolbar md-open="demo.isOpen" count="demo.count"  md-direction="left" ng-show="showComplete" > 
+                                            <md-fab-trigger > 
+                                                <md-button aria-label="menu" class="md-fab md-raised md-primary" style="background-color:#2196F3;" ng-disabled="currentStep == 0" ng-click="completeSignup()"> <!-- type="submit" -->
+                                                    <md-icon><i class="material-icons">done</i></md-icon>
+                                                    <md-tooltip md-visible="showTooltip" md-direction="left">
+                                                        Complete sign up
+                                                    </md-tooltip>
+                                                </md-button>
+                                            </md-fab-trigger>
+
+                                            <md-toolbar >
+                                                <md-fab-actions class="md-toolbar-tools">
+                                                    <span style="margin-right:65px">Welcome to NanoFin</span>
+                                                </md-fab-actions>
+                                            </md-toolbar>
+                                        </md-fab-toolbar>
+
+                                    </div>    <!--footer--> 
+
+                                </form>
+                            </div> <!--card-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!--Wrapper-->
+
+    </div>
+
+
+</div>

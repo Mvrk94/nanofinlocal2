@@ -1,0 +1,55 @@
+{
+  "name": "appfy",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Appfy/appfy",
+  "description": "Appfy is a JavaScript toolkit that saves your time to build Single Page Applications. It totally modular and based on MEAN stack concept.",
+  "dependencies": {
+    "angular": "~1.5.3",
+    "moment": "2.14.x",
+    "angular-moment": "1.0.x",
+    "angular-translate": "^2.11.0",
+    "angular-animate": "~1.5.3",
+    "angular-sanitize": "~1.5.3",
+    "angular-ui-router": "~0.2.15",
+    "satellizer": "stewones/satellizer#master",
+    "ng-lodash": "^0.5.0",
+    "ngstorage": "^0.3.10"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.5.3"
+  },
+  "resolutions": {
+    "angular": "~1.5.3"
+  },
+  "main": [
+    "build/client/appfy.min.js"
+  ],
+  "keywords": [
+    "mean",
+    "angular",
+    "express",
+    "sendgrid",
+    "firebase",
+    "heroku",
+    "github",
+    "mongodb",
+    "sparkpost"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.1",
+    "commit": "ba3c0fef6d7e257a603bf155a2d5fa4bbc7d6519"
+  },
+  "_source": "https://github.com/appfy/appfy.git",
+  "_target": "*",
+  "_originalSource": "appfy"
+}
